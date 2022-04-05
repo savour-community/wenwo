@@ -1,0 +1,14 @@
+.env
+*~
+__pycache__/
+*.pyc
+.eggs/
+.mypy_cache/
+mortgage_car/local_settings.py
+*.swo
+*.swp
+dump.rdb
+tmp/
+.pytest_cache/
+.coverage
+media
