@@ -1,0 +1,16 @@
+{% load staticfiles ww_tags%}
+<footer class="footer">
+    <div class="FriendLink hidden-xs clearfix">
+        <ul class="clears">
+            <li>友情链接:</li>
+            {% for link in link_list %}
+                <li><a href="{{ link.linkurl }}" target="_blank">{{ link.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="copyright">©2018-2021·All Rights Reserved
+        · <a target="_blank" href="https://www.wenwoha.com">问我学院官网</a>
+        · <a target="_blank" href="http://www.gingernet.vip" target="_blank">天津椭圆曲线(原木姜子)科技有限公司</a>版权所有©问我学院
+        · <a target="_blank" href="https://beian.miit.gov.cn/">津ICP备20001736号-1</a>
+    </div>
+</footer>

@@ -1,0 +1,66 @@
+{% extends 'v2_front/layout/main.html' %}
+{% load staticfiles ww_tags%}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/v2/article.css' %}">
+    <link rel="stylesheet" href="{% static 'css/v2/my_new.css' %}">
+    <style>
+        #id_category {
+            font-size: 12px;
+            background-color: #F3F3F4;
+            border-radius: 10px;
+            border: 0;
+            height: 30px;
+            width: 200px;
+        }
+        #id_excerpt {
+            border: 0;
+            border-radius: 8px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+<div class="article-container">
+    {% include 'v2_front/layout/header.html' %}
+    <div class="activity-content main-container">
+        {% include 'v2_front/auth/tab/tab_select.html' %}
+        <div class="content-right col-xs-12 col-sm-12 col-md-9 col-lg-9">
+            <div class="base-detail">
+              <div class="title">
+                <p>我的文章</p>
+                <a href="{% url 'write_blog' %}" class="btn" style="background-color:#18C99D; color: white">写文章</a>
+              </div>
+              <div class="information-bd-box">
+                <div class="information-body-item">
+                  <ul>
+                     {% for blog in blog_list %}
+                        <li class="">
+                          <div class="information-right-content">
+                            <a><p>{{ blog.title }}</p></a>
+                            <p class="desc" style="margin-top:15px">{{ blog.excerpt }}</p>
+                            <div class="" style="margin-top: 10px">
+                                <div style="float:left; font-size: 14px; color: #18C99D; font-weight:bold">
+                                    <span>文章状态: </span>
+                                    {{ blog.is_check | is_checked }}
+                                </div>
+                                <div style="float:right">
+                                    {% if blog.is_check == "No"%}
+                                        <a href="{% url 'update_blog' blog.id %}" class="btn" style="background-color:#18C99D; color: white">修改</a>
+                                    {% else %}
+                                        <a style="color:#18C99D">您的文章审核通过, 原则上不允许修改，若必需要修改请联系平台管理员</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                          </div>
+                        </li>
+                   {% endfor %}
+                  </ul>
+                </div>
+                <nav aria-label="Page navigation example" class="d-flex justify-content-center" style="margin-top:20px">
+                  {% include 'v2_front/public/pagination.html' with items=blog_list %}
+                </nav>
+              </div>
+            </div>
+      </div>
+   </div>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'backend/layout/filter_panel.html' %}
+{% load staticfiles ww_tags %}
+{% block bixin_head_title %}
+{% endblock %}
+{% block panelHeader %}
+    <link rel="stylesheet" href="{% static '/css/v2/libraryDetail.css' %}">
+    <link rel="stylesheet" href="{% static 'css/v2/editormd.preview.css' %}">
+{% endblock %}
+{% block filter %}
+<h2>问答详情</h2>
+<ul class="nav navbar-right panel_toolbox">
+  <li>
+      <a href="{% url 'back_suggestion_list' %}">返回反馈列表<i class="fa fa-chevron-right ml-1"></i></a>
+  </li>
+</ul>
+<div class="clearfix"></div>
+{% endblock %}
+{% block content %}
+<div class="form-horizontal form-label-left">
+  <div class="form-group" style="text-align: center">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="form-control form-display col-md-12 col-xs-12 bixin-text-wrap" style="font-size:20px">
+          {{ b_suggestion.title }}
+      </div>
+    </div>
+  </div>
+  <div class="form-group" style="text-align: center">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="form-control form-display col-md-12 col-xs-12 bixin-text-wrap">
+          <span>作者：{{ b_suggestion.user.user_name }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="form-control form-display col-md-12 col-xs-12 bixin-text-wrap">
+          反馈内容： {{ b_suggestion.body | safe }}
+      </div>
+    </div>
+  </div>
+  <div class="ln_solid"></div>
+  <div class="form-group">
+    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3"></div>
+  </div>
+</div>
+{% endblock %}
+
+

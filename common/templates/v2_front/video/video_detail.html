@@ -1,0 +1,128 @@
+{% extends 'v2_front/layout/main.html' %}
+{% load staticfiles ww_tags%}
+{% block head %}
+    <link rel="stylesheet" href="{% static '/css/v2/videoDetail.css' %}">
+    <link rel="stylesheet" href="{% static 'css/v2/editormd.preview.css' %}">
+{% endblock %}
+{% block body %}
+ <div class="video-detail-container">
+    {% include 'v2_front/layout/header.html' %}
+    <div class="main-container">
+      <div class="video-top-detail">
+        <img src="{% url 'index' %}media/{{ video_dtl.video_img }}" alt="" class="video-img">
+        <div class="detail-right">
+          <div class="video-title">{{ video_dtl.title }}</div>
+          <div class="tag">{{ video_dtl.category }}</div>
+          <div class="price">{{ video_dtl.excerpt }}</div>
+          <div class="time">发布时间：{{ video_dtl.created_at | hdatetime }}</div>
+          <div class="users">
+            <div class="user-list">
+                {% for user in user_list %}
+                    <img class="user-item" src="{% url 'index' %}media/{{ video_dtl.user.id | userinfoimg }}" alt="">
+                {% endfor %}
+            </div>
+            <div class="num">已有 {{ video_dtl.views }} 人学习</div>
+          </div>
+          <div class="btns">
+            <a href="{% url 'video_chapter' video_dtl.id %}" type="button" class="btn btn-primary buy-btn">立即查看</a>
+          </div>
+        </div>
+      </div>
+      <div class="detail-content">
+        <div class="content-left">
+          <div class="tabs">
+              {% if tab_v == "introduce" %}
+                  <a href="{% url 'video_detail' video_dtl.id%}?tab_v=introduce" class="tab-item course active">课程介绍</a>
+              {% else %}
+                  <a href="{% url 'video_detail' video_dtl.id%}?tab_v=introduce" class="tab-item course">课程介绍</a>
+              {% endif %}
+              {% if tab_v == "chapters" %}
+                  <a href="{% url 'video_detail' video_dtl.id%}?tab_v=chapters" class="tab-item catalog active">课程目录</a>
+              {% else %}
+                  <a href="{% url 'video_detail' video_dtl.id%}?tab_v=chapters" class="tab-item catalog">课程目录</a>
+              {% endif %}
+              {% if tab_v == "comment" %}
+                  <a href="{% url 'video_detail' video_dtl.id%}?tab_v=comment" class="tab-item comment active">热门讨论</a>
+              {% else %}
+                  <a href="{% url 'video_detail' video_dtl.id%}?tab_v=comment" class="tab-item comment">热门讨论</a>
+              {% endif %}
+          </div>
+         {% if tab_v == "introduce" %}
+              <div class="tab-one tabpanel">
+                <h2>简--介--</h2>
+                <div class="introduce">
+                  <p>{{ video_dtl.video_intro | safe }}</p>
+                </div>
+              </div>
+          {% endif %}
+          {% if tab_v == "chapters" %}
+              <div class="tab-two">
+                <div class="widget-course">
+                  <div class="chapter-head"> {{ video_dtl.title  }}</div>
+                  {% for video_c in video_chapters %}
+                      <a href="{% url 'video_chapter' video_dtl.id %}" class="section">
+                        <div class="name">{{ video_c.chart }} {{ video_c.chart_name }}</div>
+                        <div class="section-right">
+                          <img class="play-icon" src="{% static 'images/video.svg' %}" alt="">
+                          <div calss="time">{{ video_c.time_long  }}</div>
+                        </div>
+                      </a>
+                  {% endfor %}
+                </div>
+              </div>
+          {% endif %}
+          {% if tab_v == "comment" %}
+              <div class="tab-three">
+                <div class="widget-comments">
+                    {% for vr in vr_list %}
+                      <div class="widget-comment-list">
+                        <img class="user-avatar" src="{% static 'images/avatar.png' %}" alt="">
+                        <div class="media-body">
+                          <div class="media-heading">{{ vr.user.user_name }}</div>
+                          <div class="content">{{ vr.content }}</div>
+                          <div class="media-footer">
+                            <div class="time">{{ vr.created_at | hdatetime }}</div>
+                            <div class="zan">
+                              <img src="{% static 'images/like.svg' %}" alt="">
+                              <div>0</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {% endfor %}
+                </div>
+              </div>
+          {% endif %}
+        </div>
+        <div class="content-right">
+          <div class="widget-user">
+            <div class="video-user">
+              {% if user_info.user_pho %}
+                   <img src="{% url 'index' %}media/{{ user_info.user_pho }}" alt="">
+              {% else %}
+                  <img src="{% static 'images/avatar.png' %}" alt="">
+              {% endif %}
+              <div class="user-right">
+                <div class="user-name">{{ video_dtl.user.user_name }}</div>
+                <div>{{ video_dtl.user.id | userinfopos }}</div>
+                <div>{{ video_total }} 个课程</div>
+              </div>
+            </div>
+            <div class="user-des">{{ video_dtl.user.id | userinfo_introduce }}</div>
+          </div>
+          <div class="panel-default">
+            <div class="panel-header">讲师的相关课程</div>
+            <div class="panel-body">
+                {% for user_course in user_course_list %}
+                  <div class="program-recommend">
+                    <div class="program-recommend-title">{{ user_course.title }}</div>
+                    <div class="program-recommend-joiner">{{ user_course.views }} 人参与</div>
+                  </div>
+                {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

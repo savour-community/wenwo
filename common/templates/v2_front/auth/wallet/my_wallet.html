@@ -1,0 +1,131 @@
+{% extends 'v2_front/layout/main.html' %}
+{% load staticfiles ww_tags%}
+{% block head %}
+    <link rel="stylesheet" href="{% static '/css/v2/article.css' %}">
+    <style>
+        .el-tabs {
+          width: 100%;
+          min-height: 40px;
+          border-bottom: 1px solid #ddd;
+        }
+        .el-tabs .tabs-box {
+          display: flex;
+          width: auto;
+        }
+        .el-tabs .el-tab {
+          padding: 0 20px;
+          height: 40px;
+          box-sizing: border-box;
+          line-height: 40px;
+          display: inline-block;
+          list-style: none;
+          font-size: 14px;
+          font-weight: 500;
+          color: #303133;
+          text-decoration: none;
+          border: 1px solid #ddd;
+          border-bottom: none;
+          border-right: none;
+        }
+        .el-tabs .el-tab:last-child {
+          border-right: 1px solid #ddd;
+          border-radius: 0 6px 0 0;
+        }
+        .el-tabs .el-tab:first-child {
+          border-radius: 6px 0 0 0;
+        }
+        .el-tabs .el-tab:hover {
+          color: #409EFF;
+        }
+        .el-tabs .el-tab.active {
+          background-color: #ccc;
+        }
+        .el-tab-content {
+          width: 100%;
+          box-sizing: border-box;
+          padding: 20px;
+        }
+        .title-box {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          padding-bottom: 12px;
+          margin-top: 20px;
+          border-bottom: 1px solid #F0F0F0;
+        }
+        .left-title {
+          font-size: 18px;
+          font-family: PingFang SC;
+          font-weight: bold;
+          color: #333333;
+        }
+        .right-title {
+          font-size: 18px;
+          font-family: PingFang SC;
+          font-weight: 400;
+          color: #298B02;
+          padding-right: 30px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+<div class="article-container">
+    {% include 'v2_front/layout/header.html' %}
+    <div class="activity-content main-container">
+        {% include 'v2_front/auth/tab/tab_select.html' %}
+        <div class="content-right col-xs-12 col-sm-12 col-md-9 col-lg-9">
+        <div class="base-detail">
+          <div class="information-bd-box">
+            <div class="information-body-item">
+               <div class="el-tabs" style="margin-top: 10px;">
+                  <div class="tabs-box">
+                    {% if top_active == "my_wallet" %}
+                        <a class="el-tab active" href="{% url 'my_wallet' %}">我的收益</a>
+                    {% else %}
+                        <a class="el-tab" href="{% url 'my_wallet' %}">我的收益</a>
+                    {% endif %}
+                     {% if top_active == "withdraw_wallet" %}
+                        <a class="el-tab active" href="{% url 'withdraw_wallet' %}">提现</a>
+                    {% else %}
+                        <a class="el-tab" href="{% url 'withdraw_wallet' %}">提现</a>
+                    {% endif %}
+                  </div>
+               </div>
+                <div class="title-box">
+                    <p class="left-title"></p>
+                    <p class="right-title">
+                        <span>人民币余额: {{ cny_user_wallet.amount | keep_two_decimal_places }} 元</span>
+                        <span style="margin-left: 30px">平台积分: {{ wenwo_user_wallet.amount | keep_two_decimal_places }} 积分</span>
+                    </p>
+               </div>
+               <div class="box-body table-responsive" style="margin-top:20px">
+                    <table class="table table-hover table-bordered datatable" width="100%">
+                        <thead>
+                            <tr>
+                                <th>币种类型</th>
+                                <th>金额(元/积分)</th>
+                                <th>收益类型</th>
+                                <th>收益来源</th>
+                                <th>时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for wallet_record in wallet_record_list %}
+                                <tr>
+                                    <td>{{ wallet_record.coin_type | coin_type }}</td>
+                                    <td>{{ wallet_record.amount | keep_two_decimal_places }}</td>
+                                    <td>{{ wallet_record.wallet_type | wallet_type }}</td>
+                                    <td>{{ wallet_record.source_type | source_type }}</td>
+                                    <td>{{ wallet_record.created_at | hdatetime }}</td>
+                                </tr>
+                           {% endfor %}
+                       </tbody>
+                    </table>
+               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}

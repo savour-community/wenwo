@@ -1,0 +1,71 @@
+{% extends 'v2_front/layout/main.html' %}
+{% load staticfiles ww_tags%}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/v2/article.css' %}">
+    <link rel="stylesheet" href="{% static 'css/v2/my_new.css' %}">
+    <style>
+        #id_category {
+            font-size: 12px;
+            background-color: #F3F3F4;
+            border-radius: 10px;
+            border: 0;
+            height: 30px;
+            width: 200px;
+        }
+        #id_excerpt {
+            border: 0;
+            border-radius: 8px;
+        }
+        .submit-btn {
+          width: 60px;
+          height: 34px;
+          line-height: 34px;
+          text-align: center;
+          background-color: #E60012;
+          color: #ffffff;
+          border-radius: 2px;
+          -webkit-user-select: none;
+             -moz-user-select: none;
+              -ms-user-select: none;
+                  user-select: none;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+<div class="article-container">
+    {% include 'v2_front/layout/header.html' %}
+    <div class="activity-content main-container">
+        {% include 'v2_front/author/tab/tab_select.html' %}
+        <div class="content-right col-xs-12 col-sm-12 col-md-9 col-lg-9">
+            <div class="base-detail">
+              <div class="title">
+                <p style="font-size: 20px;">TA的博客</p>
+              </div>
+              <div class="information-bd-box">
+                <div class="information-body-item">
+                  <ul>
+                     {% for blog in his_blog_list %}
+                        <li class="d-flex justify-content-between">
+                          <div class="information-right-content">
+                            <a><p>{{ blog.title }}</p></a>
+                            <p class="desc" style="margin-top:15px">{{ blog.excerpt }}</p>
+                            <div class="art-info d-flex justify-content-between" style="margin-top: 10px">
+                                <div style="width:715px"></div>
+                                <div style="font-size: 14px; color: #18C99D; font-weight:bold;">
+                                   <a href="{% url 'index' %}blog_detail-{{ blog.id }}.html" class="submit-btn" style="margin-top:0; padding-left:10px; width:80px; background-color:#18C99D;">阅读文章</a>
+                                </div>
+                            </div>
+                          </div>
+                        </li>
+                   {% endfor %}
+                  </ul>
+                </div>
+                <nav aria-label="Page navigation example" class="d-flex justify-content-center" style="margin-top:20px">
+                  {% include 'v2_front/public/pagination.html' with items=his_blog_list %}
+                </nav>
+              </div>
+            </div>
+      </div>
+   </div>
+</div>
+{% endblock %}

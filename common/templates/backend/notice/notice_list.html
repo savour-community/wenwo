@@ -1,0 +1,46 @@
+{% extends 'backend/layout/filter_panel.html' %}
+{% load staticfiles  ww_tags%}
+{% block bixin_head_title %}
+{% endblock %}
+{% block panelHeader %}
+<h3>公告列表</h3>
+{% endblock %}
+{% block filter %}
+{% endblock %}
+{% block content %}
+<div class="dataTables_wrapper form-inline no-footer">
+  <div class="row">
+    <div class="col-12">
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered dataTable no-footer" role="grid">
+          <thead>
+            <tr role="row">
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">ID</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">公标题</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">创建时间</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for b_notice in b_notice_list %}
+            <tr role="row">
+              <td>{{ b_notice.id }}</td>
+              <td>{{ b_notice.title }}</td>
+              <td>{{ b_notice.created_at | hdatetime }}</td>
+              <td>
+                 <a href="{% url 'back_notice_detail' b_notice.id %}">查看</a>
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="pull-right">
+      {% include 'backend/select/pagination.html' with items=b_notice_list %}
+    </div>
+  </div>
+</div>
+{% endblock %}

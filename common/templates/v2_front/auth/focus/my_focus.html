@@ -1,0 +1,61 @@
+{% extends 'v2_front/layout/main.html' %}
+{% load staticfiles ww_tags%}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/v2/article.css' %}">
+    <link rel="stylesheet" href="{% static 'css/v2/rank.css' %}">
+{% endblock %}
+{% block body %}
+<div class="article-container">
+    {% include 'v2_front/layout/header.html' %}
+    <div class="activity-content main-container">
+        {% include 'v2_front/auth/tab/tab_select.html' %}
+        <div class="content-right col-xs-12 col-sm-12 col-md-9 col-lg-9" style="background-color: #fff;">
+            <div class="rank-container" style="width: 100%; margin:0; border-radius:0; padding: 0">
+                <h6 class="rank-title">我的关注</h6>
+                <ul class="rank-list widget-streams users">
+                    {% for fans in fans_list %}
+                        <li class="rank-item">
+                            <section class="hover-show streams-item">
+                                <div class="stream-wrap media">
+                                    <div class="col-xs-12 col-md-9 rank-item-box">
+                                        <div class="pull-left mr-10">
+                                            <a href="#">
+                                                 {% if fans.user_pho %}
+                                                    <img class="media-object avatar-64" src="{% url 'index' %}media/{{ fans.user_pho }}" alt="{{ fans.fans.user_name }}">
+                                                {% else %}
+                                                    <img class="media-object avatar-64" src="{% static 'images/avatar.png' %}" alt="{{ fans.fans.user_name }}">
+                                                {% endif %}
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">
+                                                <a href="#">{{ fans.fans.user_name }}</a>
+                                                <span class="text-gold"><i class="fa fa-graduation-cap" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="" data-original-title="已通过行家认证"></i></span>
+                                            </h4>
+                                            {% if fans.user_pos %}
+                                                <p class="text-muted">{{ fans.user_pos }}</p>
+                                            {% else %}
+                                                 <p class="text-muted">高级开发工程师</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="hidden-xs col-md-3 btn-box">
+                                        <ul class="action-list list-unstyled mt-20">
+                                            <li>
+                                                <a href="{% url 'author_main' fans.fans.id %}" class="btn btn-warning btn-sm">查看主页</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </section>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <nav aria-label="Page navigation example" class="d-flex justify-content-center" style="margin-top:15px">
+                   {% include 'v2_front/public/pagination.html' with items=fans_list %}
+                </nav>
+            </div>
+        </div>
+   </div>
+</div>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'v2_front/layout/main.html' %}
+{% load staticfiles ww_tags%}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/v2/article.css' %}">
+    <style>
+        #id_category {
+            font-size: 12px;
+            background-color: #F3F3F4;
+            border-radius: 10px;
+            border: 0;
+            height: 30px;
+            width: 200px;
+        }
+        #id_excerpt {
+            border: 0;
+            border-radius: 8px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+  <div class="article-container">
+    {% include 'v2_front/layout/header.html' %}
+    <div class="activity-content main-container">
+      {% include 'v2_front/auth/tab/tab_select.html' %}
+      <div class="article-right">
+        <form class="needs-validation" method="post" action="{% url 'write_blog' %}">
+            <div class="form-item">
+              <div class="form-title">文章信息</div>
+                <div class="mb-3 relative required">
+                  {{ act_form.title }}
+                  {% if act_form.title.errors %}
+                    <div class="valid-feedback">
+                       {{ act_form.title.errors }}
+                    </div>
+                  {% endif %}
+                </div>
+                <div class="form-row">
+                  <div class="col-md-3 mb-3 relative required">
+                     {{ act_form.category }}
+                     {% if act_form.category.errors %}
+                        <div class="invalid-feedback">
+                            {{ act_form.category.errors }}
+                        </div>
+                     {% endif %}
+                  </div>
+                </div>
+                <div class="mb-3 relative required">
+                  {{ act_form.excerpt }}
+                     {% if act_form.excerpt.errors %}
+                        <div class="invalid-feedback">
+                            {{ act_form.excerpt.errors }}
+                        </div>
+                     {% endif %}
+                </div>
+            </div>
+            <div class="form-item editor-form">
+              <div class="form-title">编辑文本</div>
+              <div>
+                  {% csrf_token %}
+                  {{ act_form.media }}
+                  {{ act_form.body }}
+                  {% if act_form.body.errors %}
+                    <div style="color:red; margin-left:8px; margin-top:5px">
+                       {{ act_form.body.errors }}
+                    </div>
+                  {% endif %}
+              </div>
+            </div>
+            <div class="form-bottom">
+              <div class="btns">
+                <button type="submit" class="btn btn-primary publish">发布</button>
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

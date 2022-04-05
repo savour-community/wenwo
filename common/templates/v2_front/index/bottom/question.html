@@ -1,0 +1,28 @@
+{% load staticfiles ww_tags%}
+{% for question in question_list %}
+    <div class="answer-item">
+      <div class="aswer-title">{{ question.title }}</div>
+      <div class="answer-des">{{ question.excerpt }}</div>
+      <div class="anaswer-bottom">
+        <div class="user-detail">
+          <img class="user-avatar" src="{% static 'images/user.svg' %}" alt="">
+          <div>{{ question.user }}</div>
+          <div class="time">{{ question.created_at | hdatetime }}</div>
+        </div>
+        <div class="answers">
+          <div class="num">{{ question.answers  }}个回答</div>
+          <div class="users">
+            <div class="user-item">
+              <img src="{% static 'images/user.svg' %}" alt="">
+            </div>
+            <div class="user-item">
+              <img src="{% static 'images/user.svg' %}" alt="">
+            </div>
+            <div class="user-item">
+              <img src="{% static 'images/user.svg' %}" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endfor %}

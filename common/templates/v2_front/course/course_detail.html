@@ -1,0 +1,131 @@
+{% extends 'v2_front/layout/main.html' %}
+{% load staticfiles ww_tags%}
+{% block head %}
+    <link rel="stylesheet" href="{% static '/css/v2/blogDetail.css' %}">
+    <link rel="stylesheet" href="{% static 'css/v2/editormd.preview.css' %}">
+{% endblock %}
+{% block body %}
+ <div class="blog-detail-container">
+    {% include 'v2_front/layout/header.html' %}
+    <div class="main-container">
+        <div class="main-left">
+            <div class="book-card">
+                <div class="book-info">
+                    <div class="poster">
+                        <img src="{% url 'index' %}media/{{ course_detail.logo }}" alt="">
+                    </div>
+                    <div class="info">
+                        <div class="title-line">{{ course_detail.title }}</div>
+                        <div class="media">
+                            <div class="des">{{ course_detail.excerpt }}</div>
+                            <div class="author">
+                                <div class="author-info">
+                                    <div class="user">
+                                        {% if user_info and user_info.user_pho %}
+                                            <img class="lazy avatar hero" src="{% url 'index' %}media/{{ user_info.user_pho }}" alt="">
+                                        {% else %}
+                                            <img class="lazy avatar hero" src="{% static 'images/avatar.png' %}" alt="">
+                                        {% endif %}
+                                        <div class="username">
+                                            <span class="name" style="max-width: 128px;">{{ course_detail.user.user_name }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="author-desc">
+                                    <span class="desc">{{ course_detail.user.id | userinfopos }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="other">
+                            <div class="not-buy">
+                                <div class="buy-box">
+{#                                    <div class="button--buy">购买 ￥{{ course_detail.price | keep_two_decimal_places }}</div>#}
+                                    <a class="button--buy" href="{% url 'course_article' course_detail.id %}" class="button--write">阅读</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="book-bought">
+                    <div class="label">
+                        <img src="{% static 'images/avatar.png' %}" alt="">
+                        <span style="margin-left: 6px">已有 {{ course_detail.views }} 人学习</span>
+                    </div>
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-menu-wrap">
+                    <div class="book-menu">
+                        <a href="#book-content-head" class="item active">
+                            <span class="text">目录</span>
+                        </a>
+                        <a href="#heading-0" class="item">
+                            <span class="text">介绍</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="book-content">
+                    <div class="book-content-head" id="book-content-head">专栏目录</div>
+                    <div class="book-directory section-of-info">
+                        {% for course_chapter in course_chapter_list %}
+                            <a href="{% url 'course_article' course_detail.id %}?act_id={{ course_chapter.id }}" class="section section-link">
+                                <div class="step">
+                                    <div class="step-btn">{{ course_chapter.part }}</div>
+                                </div>
+                                <div class="center">
+                                    <div class="title">{{ course_chapter.title }}</div>
+                                    <div class="sub-line">
+                                        {% if is_free == "Yes" %}
+                                            <div class="to-read">试读</div>
+                                        {% endif %}
+                                        <div class="statistics">
+                                            <span class="readed">{{ course_chapter.views }}次学习</span>
+                                            <span class="comment">{{ course_chapter.comment_num }}条评论</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                    <div class="book-section-view">
+                        <div class="article-content">
+                            <div class="post-description markdown-body html">
+                                <h2 class="heading-0" id="heading-0">专栏介绍</h2>
+                                <p>{{ course_detail.detail | safe }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="stick-section">
+              <div class="section-title">
+                <img src="{% static 'images/gonggao.svg' %}" alt="">
+                <div>问我社区专栏课程分成公告</div>
+              </div>
+              <div class="section">
+                <div class="slogan">
+                  <div class="title">问我社区</div>
+                  <div class="desc">人工智能，区块链，大数据，软硬件开发，运维测试，技术学习与咨询，就来问我</div>
+                </div>
+                <div class="wechat-qr">
+                  <div class="title">关注公众号 获取最新动态</div>
+                  <div class="qr-img">
+                      <img height="95px" width="95px" src="{% static 'picture/weixinqr.jpg' %}">
+                  </div>
+                </div>
+              </div>
+              <div class="section-help">
+                <div class="items author">
+                  <img src="{% static 'images/author_wr.svg' %}" alt="">
+                  <div class="title">成为作者</div>
+                </div>
+                <div class="items author">
+                  <img src="{% static 'images/feadback.svg' %}" alt="">
+                  <div class="title">建议反馈</div>
+                </div>
+              </div>
+          </div>
+    </div>
+ </div>
+{% endblock %}

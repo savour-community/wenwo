@@ -1,0 +1,99 @@
+{% load staticfiles ww_tags%}
+<div class="nav-container">
+  <img class="nav-img" src="{% static 'images/wenwo.png' %}" alt="">
+  <div class="nav-items">
+      {% if nav_cat == "index" %}
+         <a href="{% url 'index' %}" class="active">首页</a>
+      {% else %}
+         <a href="{% url 'index' %}">首页</a>
+      {% endif %}
+      {% if nav_cat == "course" %}
+          <a href="{% url 'course_list' %}" class="active">专栏课程</a>
+      {% else %}
+          <a href="{% url 'course_list' %}">专栏课程</a>
+      {% endif %}
+      {% if nav_cat == "video" %}
+          <a href="{% url 'video_list' %}" class="active">视频课程</a>
+      {% else %}
+          <a href="{% url 'video_list' %}">视频课程</a>
+      {% endif %}
+      {% if nav_cat == "question" %}
+          <a href="{% url 'question_list' %}" class="active">问答</a>
+      {% else %}
+          <a href="{% url 'question_list' %}">问答</a>
+      {% endif %}
+      {% if nav_cat == "activity" %}
+          <a href="{% url 'activity_list' %}" class="active">专题活动</a>
+      {% else %}
+          <a href="{% url 'activity_list' %}">专题活动</a>
+      {% endif %}
+      {% if nav_cat == "download" %}
+          <a href="{% url 'download' %}" class="active">APP下载</a>
+      {% else %}
+          <a href="{% url 'download' %}">APP下载</a>
+      {% endif %}
+      <a href="http://chaineye.wenwoha.com/">链眼社区</a>
+  </div>
+  <div class="nav-right">
+      <form style="margin-top: 10px" action="{% url 'index' %}" method="get">
+          <input type="text" style="width:200px" name="title" class="form-control form-control-sm" placeholder="请输入你要查找的内容">
+      </form>
+      {% if request.session.is_login %}
+          <div class="dropdown dropright">
+              <img class="user-avatar dropdown-toggle"  data-toggle="dropdown" src="{% static 'images/logout.svg' %}" alt="">
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a href="{% url 'person_info' %}" class="dropdown-item">
+                  <img src="{% static 'images/user.svg' %}" alt="" class="drop-down-icon">
+                  <div>个人资料</div>
+                </a>
+                <a href="{% url 'my_blog' %}" class="dropdown-item">
+                  <img src="{% static 'images/blog.svg' %}" alt="" class="drop-down-icon">
+                  <div>我的文章</div>
+                </a>
+                <a href="{% url 'my_course' %}" class="dropdown-item">
+                  <img src="{% static 'svg/course.svg' %}" alt="" class="drop-down-icon">
+                  <div>我的专栏</div>
+                </a>
+                <a href="{% url 'my_video' %}" class="dropdown-item">
+                  <img src="{% static 'svg/video.svg' %}" alt="" class="drop-down-icon">
+                  <div>我的视频教程</div>
+                </a>
+                <a href="{% url 'my_question' %}" class="dropdown-item">
+                  <img src="{% static 'images/question.svg' %}" alt="" class="drop-down-icon">
+                  <div>我的提问</div>
+                </a>
+                <a href="{% url 'my_wallet' %}" class="dropdown-item">
+                  <img src="{% static 'images/income.svg' %}" alt="" class="drop-down-icon">
+                  <div>我的收益</div>
+                </a>
+                <hr/>
+                <a href="{% url 'write_blog' %}" class="dropdown-item">
+                  <img src="{% static 'images/write.svg' %}" alt="" class="drop-down-icon">
+                  <div>写文章</div>
+                </a>
+                <a href="{% url 'create_question' %}" class="dropdown-item">
+                  <img src="{% static 'images/ask.svg' %}" alt="" class="drop-down-icon">
+                  <div>提问</div>
+                </a>
+                <hr/>
+                <a href="{% url 'create_sgt' %}" class="dropdown-item">
+                  <img src="{% static 'images/feadback.svg' %}" alt="" class="drop-down-icon">
+                  <div>反馈问题</div>
+                </a>
+                <a href="{% url 'logout' %}" class="dropdown-item">
+                  <img src="{% static 'images/logout.svg' %}" alt="" class="drop-down-icon">
+                  <div>退出</div>
+                </a>
+              </div>
+          </div>
+          {% if g_user_info and g_user_info.user_pho  %}
+              <img class="user-avatar" src="{% url 'index' %}media/{{ g_user_info.user_pho }}" alt="">
+          {% else %}
+              <img class="user-avatar" src="{% static 'images/avatar.png' %}" alt="">
+          {% endif %}
+      {% else %}
+          <a href="{% url 'login' %}" class="login-btn">登录</a>
+          <a href="{% url 'register' %}" class="register-btn">注册</a>
+      {% endif %}
+  </div>
+</div>

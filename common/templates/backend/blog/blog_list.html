@@ -1,0 +1,69 @@
+{% extends 'backend/layout/filter_panel.html' %}
+{% load staticfiles  ww_tags%}
+{% block bixin_head_title %}
+{% endblock %}
+{% block panelHeader %}
+<h3>博客列表</h3>
+{% endblock %}
+{% block filter %}
+    <form encType="multipart/form-data" class="form-inline d-flex flex-row justify-content-start align-items-end"
+          method="get">
+        <div class="form-group">
+            <label class="sr-only control-label"></label>
+            {% include 'backend/select/select_title.html' %}
+        </div>
+        <button type="submit" class="btn btn-default">查询</button>
+    </form>
+{% endblock %}
+{% block content %}
+<div class="dataTables_wrapper form-inline no-footer">
+  <div class="row">
+    <div class="col-12">
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered dataTable no-footer" role="grid">
+          <thead>
+            <tr role="row">
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">ID</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">文章标题</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">类别</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">作者</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">阅读次数</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">创建时间</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">审核状态</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">是否有效</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for b_blog in b_blog_list %}
+            <tr role="row">
+              <td>{{ b_blog.id }}</td>
+              <td>{{ b_blog.title }}</td>
+              <td>{{ b_blog.category.name }}</td>
+              <td>{{ b_blog.user.user_name }}</td>
+              <td>{{ b_blog.views }}</td>
+              <td>{{ b_blog.created_at | hdatetime }}</td>
+              <td>{{ b_blog.is_check }}</td>
+              <td>{{ b_blog.is_active }}</td>
+              <td>
+                  <a href="{% url 'back_blog_detail' b_blog.id %}">查看</a>
+                  {% if b_blog.is_check == 'Yes'%}
+                      <a>已审核</a>
+                  {% elif b_blog.is_check == 'No' %}
+                      <a href="{% url 'back_blog_check' b_blog.id %}">审核</a>
+                  {% endif %}
+                </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="pull-right">
+      {% include 'backend/select/pagination.html' with items=b_blog_list %}
+    </div>
+  </div>
+</div>
+{% endblock %}

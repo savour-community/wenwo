@@ -1,0 +1,75 @@
+{% extends 'backend/layout/filter_panel.html' %}
+{% load staticfiles  ww_tags%}
+{% block bixin_head_title %}
+{% endblock %}
+{% block panelHeader %}
+<h3>专拦课程列表</h3>
+{% endblock %}
+{% block filter %}
+    <form encType="multipart/form-data" class="form-inline d-flex flex-row justify-content-start align-items-end"
+          method="get">
+        <div class="form-group">
+            <label class="sr-only control-label"></label>
+            {% include 'backend/select/select_title.html' %}
+        </div>
+        <button type="submit" class="btn btn-default">查询</button>
+    </form>
+{% endblock %}
+{% block content %}
+<div class="dataTables_wrapper form-inline no-footer">
+  <div class="row">
+    <div class="col-12">
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered dataTable no-footer" role="grid">
+          <thead>
+            <tr role="row">
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">课程标题</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">作者</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">课程状态</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">购买人数</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">文章数量</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">课程阅读量</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">课程完成度</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">是否是有效</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">发布时间</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for b_course in b_course_list %}
+            <tr role="row">
+              <td>{{ b_course.title }}</td>
+              <td>{{ b_course.user.user_name }}</td>
+              <td>{{ b_course.status }}</td>
+              <td>{{ b_course.buyer_num }}</td>
+              <td>{{ b_course.article_num }}</td>
+              <td>{{ b_course.views }}</td>
+              <td>{{ b_course.process }}</td>
+              <td>{{ b_course.is_active }}</td>
+              <td>{{ b_course.created_at | hdatetime }}</td>
+              <td>
+                  {% if b_course.status == 'CheckPass'%}
+                      <a>已审核</a>
+                  {% elif b_course.status == 'CheckFail' %}
+                      <a>已打回</a>
+                  {% elif b_course.status == 'Checking' %}
+                      <a href="{% url 'back_course_check' b_course.id %}?status=CheckPass">通过</a>
+                      <a href="{% url 'back_course_check' b_course.id %}?status=CheckFail">拒绝</a>
+                  {% endif %}
+                  <a href="{% url 'back_course_detail' b_course.id %}">查看详情</a>
+                  <a href="{% url 'bc_article_list' b_course.id %}">查看课程文章</a>
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="pull-right">
+      {% include 'backend/select/pagination.html' with items=b_blog_list %}
+    </div>
+  </div>
+</div>
+{% endblock %}

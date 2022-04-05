@@ -1,0 +1,28 @@
+{% extends 'v2_front/layout/main.html' %}
+{% load staticfiles ww_tags%}
+{% block head %}
+    <link rel="stylesheet" href="{% static '/css/v2/activity.css' %}">
+{% endblock %}
+{% block body %}
+<div class="activity-container">
+    {% include 'v2_front/layout/header.html' %}
+    <div class="activity-list main-container">
+        {% for activity in activity_list %}
+          <a href="{% url 'index' %}activity_detail-{{ activity.id }}.html" class="activity-item">
+            <img src="{% url 'index' %}media/{{ activity.img }}" alt="" class="activity-img">
+            <div class="activity-name">{{ activity.title }}</div>
+            <div class="activity-bottom">
+              <div class="activity-time">{{ activity.acttime }}</div>
+              <div class="activity-view">
+                <img src="{% static 'images/eye.svg' %}" alt="">
+                <div>{{ activity.views }}</div>
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+    </div>
+     <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+       {% include 'v2_front/public/pagination.html' with items=activity_list %}
+     </nav>
+  </div>
+{% endblock %}

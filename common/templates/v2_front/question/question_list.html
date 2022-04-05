@@ -1,0 +1,78 @@
+{% extends 'v2_front/layout/main.html' %}
+{% load staticfiles ww_tags%}
+{% block head %}
+    <link rel="stylesheet" href="{% static '/css/v2/answer.css' %}">
+{% endblock %}
+{% block body %}
+<div class="answer-container">
+    {% include 'v2_front/layout/header.html' %}
+    <div class="main-container answer-box">
+      <div class="answer-left">
+        <div class="type-items">
+          <div class="type-list">
+           {% if cat_id == 0 %}
+                <a href="{% url 'question_list' %}?cat_id=0">
+                    <div class="type-item active">全部</div>
+                </a>
+            {% else %}
+                <a href="{% url 'question_list' %}?cat_id=0">
+                    <div class="type-item">全部</div>
+                </a>
+            {% endif %}
+            {% for topic_cat in topic_cat_list %}
+                {% if topic_cat.id == cat_id %}
+                  <a href="{% url 'question_list' %}?cat_id={{ topic_cat.id }}">
+                      <div class="type-item active">{{ topic_cat.name }}</div>
+                  </a>
+                {% else %}
+                   <a href="{% url 'question_list' %}?cat_id={{ topic_cat.id }}">
+                      <div class="type-item">{{ topic_cat.name }}</div>
+                   </a>
+                {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="answer-right" style="background-color: #fff; border-radius: 10px; padding-left:30px; padding-right: 30px">
+        <div class="answer-list">
+          {% for topic in topic_list %}
+              <a href="{% url 'index' %}question_detail-{{ topic.id }}.html">
+                 <div class="answer-item">
+                    <div class="aswer-title">{{ topic.title }}</div>
+                    <div class="answer-des">{{ topic.excerpt }}</div>
+                    <div class="anaswer-bottom">
+                      <div class="user-detail">
+                        {% if topic.user_photo %}
+                            <img class="user-avatar" src="{% url 'index' %}media/{{ topic.user_photo }}" alt="">
+                        {% else %}
+                            <img class="user-avatar" src="{% static 'images/avatar.png' %}" alt="">
+                        {% endif %}
+                        <div>{{ topic.user.user_name }}</div>
+                        <div class="time">{{ topic.created_at | hdatetime }}</div>
+                      </div>
+                      <div class="answers">
+                        <div class="num">{{ topic.answers }}个回答</div>
+                        <div class="users">
+                          {% for reply_photo in topic.reply_photo_list %}
+                              <div class="user-item">
+                                 {% if reply_photo %}
+                                    <img src="{% url 'index' %}media/{{ reply_photo }}" alt="">
+                                 {% else %}
+                                    <img src="{% static 'images/avatar.png' %}" alt="">
+                                 {% endif %}
+                              </div>
+                          {% endfor %}
+                        </div>
+                      </div>
+                    </div>
+                 </div>
+              </a>
+          {% endfor %}
+        </div>
+        <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+           {% include 'v2_front/public/pagination.html' with items=topic_list %}
+        </nav>
+      </div>
+    </div>
+  </div>
+{% endblock %}

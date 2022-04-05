@@ -1,0 +1,81 @@
+{% extends 'v2_front/layout/main.html' %}
+{% load staticfiles ww_tags%}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/v2/article.css' %}">
+    <link rel="stylesheet" href="{% static 'css/v2/AdminLTE.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/v2/my_new.css' %}">
+    <style>
+        #id_category {
+            font-size: 12px;
+            background-color: #F3F3F4;
+            border-radius: 10px;
+            border: 0;
+            height: 30px;
+            width: 200px;
+        }
+        #id_excerpt {
+            border: 0;
+            border-radius: 8px;
+        }
+        a {
+            color: #666;
+            text-decoration: none;
+            outline: 0;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+<div class="article-container">
+    {% include 'v2_front/layout/header.html' %}
+    <div class="activity-content main-container">
+        {% include 'v2_front/author/tab/tab_select.html' %}
+        <div class="content-right col-xs-12 col-sm-12 col-md-9 col-lg-9">
+           <div class="base-detail">
+              <div class="title">
+                <p style="font-size: 20px;">TA 的专栏</p>
+              </div>
+              <div class="information-bd-box">
+                 <div class="information-bd-box">
+                    <div class="information-body-item">
+                      <ul>
+                      {% for his_book in his_book_list %}
+                        <li class="d-flex justify-content-between">
+                          {% if his_book.logo  %}
+                              <div class="information-left-img">
+                                <img width="230" height="159" src="{% url 'index' %}media/{{ his_book.logo }}" alt="">
+                              </div>
+                          {% endif %}
+                          <div class="information-right-content">
+                            <a href="{% url 'course_detail' his_book.id %}">
+                              <p>{{ his_book.title }}</p>
+                            </a>
+                            <p class="desc">{{ his_book.excerpt }}</p>
+                            <div class="art-info d-flex justify-content-between">
+                                  <p style="font-size: 14px; color:red">
+                                    <span>价格:{{ his_book.price | keep_two_decimal_places }} 元</span>
+                                    <span style="margin-left:10px; margin-right:10px">状态:{{ his_book.status | check_status }}</span>
+                                    <span>完整度:{{ his_book.process }} </span>
+                                  </p>
+                                  <p>
+                                       <span style="margin-left: 10px">
+                                         <a href="{% url 'course_detail' his_book.id %}"  class="btn btn-danger d-inline">
+                                            查看详情
+                                         </a>
+                                       </span>
+                                  </p>
+                            </div>
+                          </div>
+                        </li>
+                       {% endfor %}
+                      </ul>
+                    </div>
+                    <nav aria-label="Page navigation example" class="d-flex justify-content-center" style="margin-top:20px">
+                      {% include 'v2_front/public/pagination.html' with items=his_book_list %}
+                    </nav>
+                 </div>
+              </div>
+           </div>
+      </div>
+   </div>
+</div>
+{% endblock %}

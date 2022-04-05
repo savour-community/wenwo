@@ -1,0 +1,61 @@
+{% extends 'backend/layout/filter_panel.html' %}
+{% load staticfiles  ww_tags%}
+{% block bixin_head_title %}
+{% endblock %}
+{% block panelHeader %}
+<h3>视频列表</h3>
+{% endblock %}
+{% block filter %}
+{% endblock %}
+{% block content %}
+<div class="dataTables_wrapper form-inline no-footer">
+  <div class="row">
+    <div class="col-12">
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered dataTable no-footer" role="grid">
+          <thead>
+            <tr role="row">
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">标题</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">类别</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">作者</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">阅读次数</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">创建时间</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">是否有效</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for bv in vedio_list %}
+            <tr role="row">
+              <td>{{ bv.title }}</td>
+              <td>{{ bv.category.name }}</td>
+              <td>{{ bv.user.user_name }}</td>
+              <td>{{ bv.views }}</td>
+              <td>{{ bv.created_at | hdatetime }}</td>
+              <td>{{ bv.is_active }}</td>
+              <td>
+                  {% if bv.status == 'CheckPass'%}
+                      <a>已审核</a>
+                  {% elif bv.status == 'CheckFail' %}
+                      <a>已打回</a>
+                  {% elif bv.status == 'Checking' %}
+                      <a href="{% url 'back_vedio_check' bv.id %}?status=CheckPass">通过</a>
+                      <a href="{% url 'back_vedio_check' bv.id %}?status=CheckFail">打回</a>
+                  {% endif %}
+                  <a href="{% url 'back_vedio_detail' bv.id %}">查看详情</a>
+                  <a href="{% url 'back_vedio_chapter' bv.id %}">查看章节</a>
+                </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="pull-right">
+      {% include 'backend/select/pagination.html' with items=vedio_list %}
+    </div>
+  </div>
+</div>
+{% endblock %}

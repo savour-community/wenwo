@@ -1,0 +1,102 @@
+.rank-container {
+  width: 1200px;
+  margin: 20px auto 0;
+  background-color: #fff;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 0 20px 20px; }
+  .rank-container .rank-title {
+    font-size: 18px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    color: #333;
+    font-weight: bold; }
+  .rank-container .rank-list {
+    width: 100%;
+    padding-left: 0;
+    margin-bottom: 0; }
+    .rank-container .rank-list .rank-item-box {
+      display: flex; }
+    .rank-container .rank-list .btn-warning {
+      color: #fff; }
+    .rank-container .rank-list .btn-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px; }
+    .rank-container .rank-list .media-heading a {
+      color: #0767c8;
+      margin-bottom: 5px;
+      font-weight: bold;
+      font-family: inherit; }
+
+.users .action-list li {
+  padding: .35rem 0; }
+
+.users .top-num .label {
+  display: block;
+  padding: 0.2em 0.6em 0.3em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25em; }
+
+.label-warning {
+  background-color: #f0ad4e; }
+
+.avatar-64 {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 10px; }
+
+.widget-notify blockquote {
+  margin: 10px;
+  font-size: 13px; }
+
+.widget-notify .not_read, .widget-streams .not_read {
+  background: #FFF9EA; }
+
+.streams-item {
+  position: relative;
+  border-bottom: 1px solid #EEE;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  margin-top: 0; }
+
+.streams-item .avatar-40 {
+  margin-top: 3px; }
+
+.streams-item .title {
+  display: inline;
+  font-size: 14px;
+  margin-right: 5px; }
+
+.streams-item .stream-left {
+  float: left;
+  margin-right: 15px; }
+
+.streams-item .stream-right {
+  float: left; }
+
+.streams-item .text-muted {
+  margin-bottom: 4px; }
+
+.streams-item .full-text {
+  color: #777;
+  font-size: 13px;
+  line-height: 1.7;
+  overflow: hidden;
+  margin-bottom: 5px;
+  margin-top: 4px; }
+
+.messages .meta {
+  font-size: 13px; }
+
+/*# sourceMappingURL=rank.css.map */

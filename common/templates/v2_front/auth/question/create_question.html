@@ -1,0 +1,67 @@
+{% extends 'v2_front/layout/main.html' %}
+{% load staticfiles ww_tags%}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/v2/article.css' %}">
+    <style>
+        #id_category {
+            font-size: 12px;
+            background-color: #F3F3F4;
+            border-radius: 10px;
+            border: 0;
+            height: 30px;
+            width: 200px;
+        }
+        #id_excerpt {
+            border: 0;
+            border-radius: 8px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+  <div class="article-container">
+    {% include 'v2_front/layout/header.html' %}
+    <div class="activity-content main-container">
+      {% include 'v2_front/auth/tab/tab_select.html' %}
+      <div class="article-right">
+        <form class="needs-validation" method="post" action="{% url 'create_question' %}">
+            <div class="form-item">
+              <div class="form-title">提问</div>
+                <div class="mb-3 relative required">
+                   {{ topic_form.title }}
+                   {% if topic_form.title.errors %}
+                        <div class="valid-feedback">
+                           {{ topic_form.title.errors }}
+                        </div>
+                   {% endif %}
+                </div>
+                <div class="form-row">
+                  <div class="col-md-3 mb-3 relative required">
+                     {{ topic_form.category }}
+                     {% if topic_form.category.errors %}
+                        <div class="invalid-feedback">
+                            {{ topic_form.category.errors }}
+                        </div>
+                     {% endif %}
+                  </div>
+                </div>
+                <div class="mb-3 relative required">
+                  {% csrf_token %}
+                  {{ topic_form.media }}
+                  {{ topic_form.content }}
+                  {% if topic_form.content.errors %}
+                    <div style="color:red; margin-left:8px; margin-top:5px">
+                       {{ topic_form.content.errors }}
+                    </div>
+                  {% endif %}
+                </div>
+            </div>
+            <div class="form-bottom">
+              <div class="btns">
+                <button type="submit" class="btn btn-primary publish">发布</button>
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

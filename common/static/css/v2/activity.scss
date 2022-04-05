@@ -1,0 +1,47 @@
+.activity-container{
+  .activity-list{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 60px;
+    .activity-item{
+      width: calc(50% - 15px);
+      background: #FFFFFF;
+      box-shadow: 0px 22px 34px -10px #E0E2E7;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 30px;
+      box-sizing: border-box;
+      .activity-img{
+        width: 100%;
+        height: 260px;
+      }
+      .activity-name{
+        color: #000000;
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 30px;
+        margin-bottom: 16px;
+      }
+      .activity-bottom{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .activity-time{
+          color: #999999;
+        }
+        .activity-view{
+          display: flex;
+          align-items: center;
+          color: #999999;
+          img{
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+}

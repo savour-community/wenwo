@@ -1,0 +1,73 @@
+.download-content-container {
+  width: 100%;
+  height: 970px;
+  background: url("../../images/bj.png") center top no-repeat;
+  box-sizing: border-box;
+  padding-top: 145px;
+  padding-left: 50px;
+  display: flex;
+  justify-content: space-between; }
+  .download-content-container .left-download-container {
+    padding-top: 200px; }
+    .download-content-container .left-download-container h6 {
+      font-size: 80px;
+      font-family: Source Han Sans CN, Source Han Sans CN-Heavy;
+      font-weight: 800;
+      text-align: left;
+      line-height: 90px; }
+      .download-content-container .left-download-container h6 span {
+        color: #24bd9c; }
+    .download-content-container .left-download-container .desc {
+      font-size: 32px;
+      font-family: Source Han Sans CN, Source Han Sans CN-Normal;
+      font-weight: Normal;
+      text-align: justifyLeft;
+      color: #787878;
+      line-height: 42px;
+      letter-spacing: 2.1px;
+      margin-top: 10px; }
+    .download-content-container .left-download-container .left-bottom-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 120px; }
+      .download-content-container .left-download-container .left-bottom-container .download-href a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 186px;
+        height: 64px;
+        background: #ffffff;
+        border-radius: 36px;
+        box-shadow: 2px 3.46px 43px 0px rgba(0, 187, 171, 0.19);
+        font-size: 18px;
+        font-family: Source Han Sans CN, Source Han Sans CN-Medium;
+        font-weight: 500;
+        text-align: justifyLeft;
+        color: #9a9a9a;
+        line-height: 24px;
+        letter-spacing: -1.2px;
+        margin-bottom: 20px; }
+      .download-content-container .left-download-container .left-bottom-container .download-qrcode {
+        display: flex;
+        justify-content: space-between; }
+        .download-content-container .left-download-container .left-bottom-container .download-qrcode .qrcode-item {
+          margin-left: 20px; }
+          .download-content-container .left-download-container .left-bottom-container .download-qrcode .qrcode-item img {
+            width: 162px; }
+          .download-content-container .left-download-container .left-bottom-container .download-qrcode .qrcode-item p {
+            font-size: 22px;
+            font-family: Source Han Sans CN, Source Han Sans CN-Regular;
+            font-weight: 400;
+            text-align: justifyLeft;
+            color: #0fad8b;
+            line-height: 22px;
+            letter-spacing: -1.5px;
+            margin-top: 20px;
+            text-align: center; }
+  .download-content-container .right-download-container {
+    width: 646px; }
+    .download-content-container .right-download-container img {
+      width: 100%; }
+
+/*# sourceMappingURL=download.css.map */

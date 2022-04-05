@@ -1,0 +1,138 @@
+{% load staticfiles%}
+<div class="left_col scroll-view">
+  <div class="navbar nav_title" style="border:0; text-align:center">
+    <a href="#" class="site_title">
+      <div class="sidebar-logo">问我数据审核后台</div>
+    </a>
+  </div>
+  <div class="clearfix"></div>
+  <a class="profile clearfix" href="#">
+    <div class="profile_pic">
+      <img src="{% static 'images/wenwo.png' %}" class="img-circle profile_img" />
+    </div>
+    <div class="profile_info"><span>系统信息</span>
+      <h2>版本号：v0.0.1</h2>
+    </div>
+  </a>
+  <br />
+  <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+    <div class="menu_section">
+      <ul class="nav side-menu">
+         {% if request.session.b_role == 'Admin' %}
+             <li>
+                  <a>
+                    <i class="fa fa-user"></i>用户管理<span class="fa fa-chevron-right pull-right"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                     <li>
+                        <a href="{% url 'back_user_list' %}">用户列表</a>
+                     </li>
+                     <li>
+                        <a href="{% url 'back_user_wallet' %}">用户钱包</a>
+                     </li>
+                  </ul>
+             </li>
+         {% endif %}
+         <li>
+              <a>
+                <i class="fa fa-file"></i>博客管理<span class="fa fa-chevron-right pull-right"></span>
+              </a>
+              <ul class="nav child_menu">
+                 <li>
+                    <a href="{% url 'back_blog_cat_list' %}">博客类别</a>
+                 </li>
+                 <li>
+                    <a href="{% url 'back_blog_list' %}">文章列表</a>
+                 </li>
+              </ul>
+         </li>
+         <li>
+              <a>
+                <i class="fa fa-video-camera"></i>视频教程管理<span class="fa fa-chevron-right pull-right"></span>
+              </a>
+              <ul class="nav child_menu">
+                  <li>
+                      <a href="{% url 'back_video_cat_list' %}">视频类别</a>
+                  </li>
+                  <li>
+                      <a href="{% url 'back_vedio_list' %}">视频列表</a>
+                  </li>
+              </ul>
+         </li>
+          <li>
+              <a>
+                <i class="fa fa-book"></i>专栏课程<span class="fa fa-chevron-right pull-right"></span>
+              </a>
+              <ul class="nav child_menu">
+                   <li>
+                        <a href="{% url 'back_course_cat_list' %}">教程类型</a>
+                   </li>
+                  <li>
+                      <a href="{% url 'back_course_list' %}">专栏列表</a>
+                  </li>
+              </ul>
+         </li>
+         <li>
+              <a>
+                <i class="fa fa-question"></i>问答管理<span class="fa fa-chevron-right pull-right"></span>
+              </a>
+              <ul class="nav child_menu">
+                   <li>
+                       <a href="{% url 'back_topic_cat_list' %}">问答类别</a>
+                   </li>
+                  <li>
+                      <a href="{% url 'back_question_list' %}">问答列表</a>
+                  </li>
+              </ul>
+         </li>
+         {% if request.session.b_role == 'Admin' %}
+             <li>
+                  <a>
+                    <i class="fa fa-comment"></i>反馈中心<span class="fa fa-chevron-right pull-right"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                      <li>
+                          <a href="{% url 'back_suggestion_list' %}">反馈列表</a>
+                      </li>
+                  </ul>
+             </li>
+             <li>
+                  <a>
+                    <i class="fa fa-pencil"></i>公告中心<span class="fa fa-chevron-right pull-right"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                      <li>
+                          <a href="{% url 'back_notice_list' %}">公告列表</a>
+                      </li>
+                  </ul>
+             </li>
+             <li>
+                  <a>
+                    <i class="fa fa-cny"></i>财务统计<span class="fa fa-chevron-right pull-right"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                      <li>
+                          <a href="#">财务情况</a>
+                      </li>
+                  </ul>
+             </li>
+             <li>
+                  <a>
+                    <i class="fa fa-wordpress"></i>用户工单<span class="fa fa-chevron-right pull-right"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                      <li>
+                          <a href="#">工单列表</a>
+                      </li>
+                  </ul>
+                  <ul class="nav child_menu">
+                      <li>
+                          <a href="#">聊天</a>
+                      </li>
+                  </ul>
+             </li>
+      {% endif %}
+      </ul>
+    </div>
+  </div>
+</div>

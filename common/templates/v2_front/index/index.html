@@ -1,0 +1,70 @@
+{% extends 'v2_front/layout/main.html' %}
+{% load staticfiles ww_tags%}
+{% block head %}
+    <link rel="stylesheet" href="{% static '/css/v2/index.css' %}">
+{% endblock %}
+{% block body %}
+<div class="home-container">
+    {% include 'v2_front/layout/header.html' %}
+    <div class="top-container">
+      <div class="main-container">
+        <div class="home-title">问我社区，让技术变得更直接，更简单</div>
+        <div class="home-des">人工智能，区块链，大数据，软硬件开发，运维测试，技术学习与咨询，就来问我</div>
+        <div class="top-box">
+          <div class="top-left">
+            <div class="top-title">
+              <img src="{% static 'images/cat.svg' %}" alt="">
+              <div>合作平台</div>
+            </div>
+            <div class="type-list">
+              <div class="type-item active">问我学院</div>
+              <div class="type-item">链眼社区</div>
+              <div class="type-item">椭圆曲线</div>
+              <div class="type-item">知鱼定制</div>
+              <div class="type-item">币核钱包</div>
+              <div class="type-item">市集商城</div>
+            </div>
+          </div>
+          <div class="top-right">
+            <img src="{% static 'images/index_banner.jpg' %}">
+          </div>
+        </div>
+        <div class="tabs">
+           {% if type == "blog" %}
+               <a href="{% url 'index' %}?type=blog" class="tab-item recommend active">推荐博客</a>
+           {% else %}
+               <a href="{% url 'index' %}?type=blog" class="tab-item recommend attention">推荐博客</a>
+           {% endif %}
+           {% if type == "video" %}
+               <a href="{% url 'index' %}?type=video" class="tab-item active">推荐教程</a>
+           {% else %}
+               <a href="{% url 'index' %}?type=video" class="tab-item attention">推荐教程</a>
+           {% endif %}
+           {% if type == "question" %}
+               <a href="{% url 'index' %}?type=question" class="tab-item active">推荐问答</a>
+           {% else %}
+               <a href="{% url 'index' %}?type=question" class="tab-item attention">推荐问答</a>
+           {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="other-container">
+      <div class="main-container">
+        <div class="other-box recommend">
+          <div class="other-left">
+            {% if type == "blog" %}
+                {% include 'v2_front/index/bottom/blog.html' %}
+            {% endif %}
+            {% if type == "video" %}
+                {% include 'v2_front/index/bottom/video.html' %}
+            {% endif %}
+            {% if type == "question" %}
+                {% include 'v2_front/index/bottom/question.html' %}
+            {% endif %}
+          </div>
+          {% include 'v2_front/index/right.html' %}
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}

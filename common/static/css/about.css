@@ -1,0 +1,17 @@
+
+.about-title {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 16px;
+    font-family:"Hannotate SC";
+}
+
+.about-excerpt {
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    font-size: 14px;
+    line-height:21px
+}
+

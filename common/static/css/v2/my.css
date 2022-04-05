@@ -1,0 +1,340 @@
+.header-container {
+  height: 70px;
+}
+.header-container .left-container .logo {
+  display: flex;
+  width: 106px;
+  height: 43px;
+}
+.header-container .left-container .nav-box {
+  width: 400px;
+  margin-left: 110px;
+}
+.header-container .left-container .nav-box li {
+  display: flex;
+  flex-direction: column;
+}
+.header-container .left-container .nav-box li.active .active-line {
+  opacity: 1;
+}
+.header-container .left-container .nav-box li a {
+  font-size: 14px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  line-height: 33px;
+  text-decoration: none;
+}
+.header-container .left-container .nav-box li .active-line {
+  display: inline-block;
+  width: 100%;
+  height: 3px;
+  background: #3F89F6;
+  border-radius: 2px;
+  opacity: 0;
+}
+.header-container .right-container .login-btn-box {
+  display: flex;
+  align-items: center;
+}
+.header-container .right-container .login-btn-box .login-btn {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  line-height: 33px;
+  text-decoration: none;
+  margin-right: 27px;
+}
+.header-container .right-container .login-btn-box .login-btn img {
+  margin-right: 3px;
+}
+.header-container .right-container .right-login-box {
+  display: flex;
+  align-items: center;
+}
+.header-container .right-container .right-login-box .user-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+.header-container .right-container .right-login-box .back-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 32px;
+  background: #FCFCFC;
+  border: 1px solid #EEEEEE;
+  border-radius: 16px;
+  font-size: 14px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  margin-left: 20px;
+}
+
+.content-box {
+  width: 100%;
+  min-height: calc(-50vh);
+  background-color: #F7F8FB;
+  padding-bottom: 50px;
+}
+.breadcrumb-navigation {
+  height: 75px;
+  font-size: 16px;
+  font-family: Adobe Heiti Std;
+  font-weight: normal;
+  color: #000000;
+  line-height: 75px;
+}
+.breadcrumb-navigation a {
+  text-decoration: none;
+  color: #000000;
+}
+.my-info-container {
+  display: flex;
+  justify-content: space-between;
+}
+.my-info-container .left-info-box {
+  width: 240px;
+  padding: 50px;
+  height: 800px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.my-info-container .left-info-box .account-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 60px;
+}
+.my-info-container .left-info-box .account-info img {
+  width: 80px;
+  height: 80px;
+  display: block;
+  margin-bottom: 30px;
+  border-radius: 50%;
+}
+.my-info-container .left-info-box .account-info .user-name {
+  font-size: 18px;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #333333;
+  line-height: 30px;
+}
+.my-info-container .left-info-box ul li {
+  width: 140px;
+  height: 44px;
+  border-radius: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.my-info-container .left-info-box ul li.active {
+  background: #3F89F6;
+  color: #fff;
+}
+.my-info-container .left-info-box .bottom-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.my-info-container .left-info-box .bottom-box img {
+  display: block;
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+}
+.my-info-container .left-info-box .bottom-box p {
+  font-size: 16px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #999999;
+}
+.my-info-container .right-info-box {
+  width: 934px;
+  height: 800px;
+  background-color: #fff;
+}
+.my-info-container .right-info-box .event-box {
+  width: 100%;
+  padding: 40px 30px;
+}
+.my-info-container .right-info-box .event-box .title {
+  font-size: 18px;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  line-height: 30px;
+}
+.my-info-container .right-info-box .event-box .no-more-box {
+  height: 690px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.my-info-container .right-info-box .event-box .no-more-box.show {
+  display: flex;
+}
+.my-info-container .right-info-box .event-box .event-list-box {
+  height: 670px;
+  overflow-y: auto;
+  margin-top: 20px;
+}
+.my-info-container .right-info-box .event-box .event-list-box .event-item {
+  width: 100%;
+  padding: 24px 36px 12px 12px;
+  background-color: #F7F8FB;
+  margin-bottom: 22px;
+  display: flex;
+  justify-content: space-between;
+}
+.my-info-container .right-info-box .event-box .event-list-box .event-item:last-child {
+  margin-bottom: 0;
+}
+.my-info-container .right-info-box .event-box .event-list-box .event-item .left-box .event-title {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  margin-bottom: 11px;
+}
+.my-info-container .right-info-box .event-box .event-list-box .event-item .left-box .event-title .icon {
+  width: 10px;
+  height: 10px;
+  background: #F65D3F;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+.my-info-container .right-info-box .event-box .event-list-box .event-item .left-box .event-title .zc {
+  width: 60px;
+  height: 20px;
+  background: #F4F5F8;
+  border-radius: 3px;
+  font-size: 12px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #999999;
+  text-align: center;
+  line-height: 20px;
+  margin-left: 24px;
+}
+.my-info-container .right-info-box .event-box .event-list-box .event-item .left-box .event-title .sh {
+  width: 60px;
+  height: 20px;
+  background: #EFF5FF;
+  border-radius: 3px;
+  font-size: 12px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #3F89F6;
+  text-align: center;
+  line-height: 20px;
+  margin-left: 10px;
+}
+.my-info-container .right-info-box .event-box .event-list-box .event-item .left-box .time {
+  font-size: 14px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #999999;
+  margin-bottom: 30px;
+}
+.my-info-container .right-info-box .event-box .event-list-box .event-item .left-box .comment-num {
+  display: flex;
+  align-items: center;
+}
+.my-info-container .right-info-box .event-box .event-list-box .event-item .left-box .comment-num img {
+  display: block;
+  width: 18px;
+  height: 15px;
+}
+.my-info-container .right-info-box .event-box .event-list-box .event-item .left-box .comment-num p {
+  font-size: 12px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #999999;
+  margin-left: 8px;
+}
+.my-info-container .right-info-box .event-box .event-list-box .event-item .right-box {
+  display: flex;
+  align-items: center;
+}
+.my-info-container .right-info-box .event-box .event-list-box .event-item .right-box .see-detail-btn {
+  width: 127px;
+  height: 38px;
+  background: #FFFFFF;
+  border: 1px solid #3F89F6;
+  border-radius: 19px;
+  text-align: center;
+  line-height: 38px;
+  text-decoration: none;
+  font-size: 12px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #3F89F6;
+}
+.my-info-container .right-info-box .modify-box {
+  width: 100%;
+  padding: 40px 30px;
+}
+.my-info-container .right-info-box .modify-box .title {
+  font-size: 18px;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  line-height: 30px;
+}
+.my-info-container .right-info-box .modify-box .modify-content {
+  width: 450px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.my-info-container .right-info-box .modify-box .modify-content .el-form {
+  margin-top: 175px;
+}
+.my-info-container .right-info-box .modify-box .modify-content .el-form .el-input {
+  margin-bottom: 25px;
+}
+.my-info-container .right-info-box .personal-box {
+  width: 100%;
+  padding: 40px 30px;
+}
+.my-info-container .right-info-box .personal-box .title {
+  font-size: 18px;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  line-height: 30px;
+}
+.my-info-container .right-info-box .personal-box .personal-content {
+  width: 450px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.my-info-container .right-info-box .personal-box .personal-content .img-upload {
+  margin-bottom: 60px;
+  margin-top: 75px;
+}
+.my-info-container .right-info-box .personal-box .personal-content .img-upload p {
+  font-size: 18px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  margin-top: 20px;
+  text-align: center;
+}

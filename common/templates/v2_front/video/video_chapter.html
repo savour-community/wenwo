@@ -1,0 +1,82 @@
+{% extends 'v2_front/layout/main.html' %}
+{% load staticfiles ww_tags%}
+{% block head %}
+    <link rel="stylesheet" href="{% static '/css/v2/videoPlay.css' %}">
+{% endblock %}
+{% block body %}
+<div class="video-play-container">
+    {% include 'v2_front/layout/header.html' %}
+    <div class="main-container">
+      <div class="video-top-detail">
+        <div class="player">
+          <video autoplay controls src="{{ vc_dtl.video_url }}"></video>
+        </div>
+        <div class="detail-right">
+          <div class="action-bar">
+            <div class="chapters">{{ video_dtl.title }}</div>
+              {% for vc in video_chapters %}
+                <a href="{% url 'video_chapter' vc.video.id %}?cid={{ vc.id }}">
+                    {% if cid == vc.id %}
+                        <div class="catalog-item active">
+                          <div class="name">{{ vc.chart }} {{ vc.chart_name }}</div>
+                          <div>{{ vc.time_long }}</div>
+                        </div>
+                    {% else %}
+                        <div class="catalog-item">
+                          <div class="name">{{ vc.chart }} {{ vc.chart_name }}</div>
+                          <div>{{ vc.time_long }}</div>
+                        </div>
+                    {% endif %}
+                </a>
+              {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="detail-content">
+        <div class="content-left">
+          <div class="widget-answers">
+            <div class="widget-comments">
+              <form class="widget-comment-form" method="post" action="{% url 'video_chapter' video_dtl.id %}">
+                {% csrf_token %}
+                {{ cmt_form.media }}
+                {{ cmt_form.content }}
+                {% if cmt_form.content.errors %}
+                    <div style="color:red; margin-left:8px; margin-top:5px">
+                       {{ cmt_form.content.errors }}
+                    </div>
+                {% endif %}
+                <div class="text-right publish">
+                  <button type="submit" class="btn btn-primary btn-sm">提交评论</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="content-right">
+          <div class="widget-user">
+            <div class="video-user">
+              <img src="{% static 'images/avatar.png' %}" alt="">
+              <div class="user-right">
+                <div class="user-name">{{ video_dtl.user.user_name }}</div>
+                <div>{{ video_dtl.user.id | userinfopos }}</div>
+                <div>{{ video_total }} 个课程</div>
+              </div>
+            </div>
+            <div class="user-des">{{ video_dtl.user.id | userinfo_introduce }}</div>
+          </div>
+          <div class="panel-default">
+            <div class="panel-header">讲师的相关课程</div>
+            <div class="panel-body">
+                {% for user_course in user_course_list %}
+                  <div class="program-recommend">
+                    <div class="program-recommend-title">{{ user_course.title }}</div>
+                    <div class="program-recommend-joiner">{{ user_course.views }} 人参与</div>
+                  </div>
+                {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}

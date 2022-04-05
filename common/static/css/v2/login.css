@@ -1,0 +1,67 @@
+.body-container {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #FBFBFD;
+  box-sizing: border-box;
+}
+.body-container .login-box {
+  position: relative;
+  width: 1200px;
+  height: 260vh;
+  max-height: 1000px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 50px 0px rgba(6, 0, 1, 0.05);
+  border-radius: 50px;
+  box-sizing: border-box;
+  padding: 60px 70px;
+}
+.body-container .login-box .login-info-box {
+  position: absolute;
+  width: 450px;
+  height: 465px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+.body-container .login-box .login-info-box .title {
+  font-size: 30px;
+  font-family: PingFang SC;
+  font-weight: 600;
+  color: #222222;
+  line-height: 33px;
+  margin-bottom: 20px;
+}
+.body-container .login-box .login-info-box .sub-title {
+  font-size: 16px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #999AA0;
+  line-height: 33px;
+  margin-bottom: 50px;
+}
+.body-container .login-box .login-info-box .btn-box {
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.body-container .login-box .login-info-box .btn-box a {
+  font-size: 14px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #CCCCD3;
+  line-height: 33px;
+  text-decoration: none;
+}
+.body-container .login-box .login-info-box .register-box {
+  margin-top: 30px;
+  font-size: 14px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #999AA0;
+  line-height: 33px;
+}
+.body-container .login-box .login-info-box .register-box a {
+  color: #3F89F6;
+}

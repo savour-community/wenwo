@@ -1,0 +1,31 @@
+{% load staticfiles ww_tags%}
+<div class="other-right">
+    <div class="hot-article">
+      <div>热门文章</div>
+      <img src="{% static 'images/hot.svg' %}" alt="">
+    </div>
+    <div class="hot-list">
+        {% for hot_blog in hot_blog_list %}
+            <div class="hot-item">{{ hot_blog.title }}</div>
+        {% endfor %}
+    </div>
+    <div class="recommend-library">
+      <div>推荐专栏课程</div>
+      <div class="refresh">
+        <img src="{% static 'images/change.svg' %}" alt="">
+        <div>换一换</div>
+      </div>
+    </div>
+    <div class="library-list">
+        {% for hot_course in hot_course_list %}
+          <div class="library-item">
+            <img src="{% url 'index' %}media/{{ hot_course.logo }}" alt="">
+            <div class="item-detail">
+              <div class="title">{{ hot_course.title }} ｜ {{ hot_course.category }}</div>
+              <div class="des">{{ hot_course.excerpt }}</div>
+              <div class="view">已有 {{ hot_course.views }} 人看过</div>
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+</div>

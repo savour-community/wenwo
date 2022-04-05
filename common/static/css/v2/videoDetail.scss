@@ -1,0 +1,276 @@
+.video-detail-container{
+  .video-top-detail{
+    display: flex;
+    background-color: #ffffff;
+    padding: 10px;
+    margin: 20px 0;
+    .video-img{
+      width: 540px;
+      height: 300px;
+      margin-right: 30px;
+    }
+    .detail-right{
+      flex: 1;
+      .video-title{
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .tag{
+        display: inline-block;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 8px;
+        font-size: 12px;
+        color: #18C99D;
+        background-color: #E7F2ED;
+        margin: 10px 0;
+      }
+      .price{
+        color: #999;
+        margin-top: 20px;
+        .num{
+          color: #ff8a00;
+          font-size: 24px;
+          margin: 0 10px;
+        }
+        .point{
+          color: #ff8a00;
+        }
+      }
+      .time{
+        color: #777;
+        margin-top: 10px;
+      }
+      .users{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid #ddd;
+        padding: 15px 0;
+        margin-top: 10px;
+        .user-list{
+          display: flex;
+          align-items: center;
+        }
+        .user-item{
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          margin-right: 5px;
+        }
+        .num{
+          color: #999;
+        }
+      }
+      .btns{
+        margin-top: 20px;
+        .buy-btn{
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+  .detail-content{
+    display: flex;
+    .content-left{
+      width: 75%;
+      padding: 0 15px;
+      background-color: #fff;
+      border-radius: 4px;
+      .tabs{
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #ddd;
+        margin-top: 20px;
+        .tab-item{
+          width: 84px;
+          height: 42px;
+          line-height: 42px;
+          text-align: center;
+          color: #555;
+          border-radius: 4px 4px 0 0;
+          cursor: pointer;
+          margin-bottom: -1px;
+          &.active{
+            border: 1px solid #ddd;
+            border-bottom-color: transparent;
+          }
+        }
+      }
+      .tabpanel{
+
+      }
+      .tab-one{
+        margin-top: 15px;
+        h2{
+          font-weight: bold;
+          padding-bottom: .3em;
+          border-bottom: 1px solid #eaecef;
+          margin-top: 24px;
+          margin-bottom: 16px;
+        }
+        .introduce{
+
+        }
+        .des{
+          padding-left: 10px;
+          line-height: 24px;
+        }
+      }
+      .tab-two{
+        display: none;
+        .widget-course{
+          .chapter-head{
+            color: #999;
+            font-size: 14px;
+            font-weight: bolder;
+            background-color: #fafafa;
+            height: 50px;
+            line-height: 50px;
+            padding: 0 20px;
+            border-bottom: 1px solid #eee;
+          }
+          .section{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 44px;
+            line-height: 44px;
+            padding: 0 20px 0 30px;
+            border-bottom: 1px solid #eee;
+            color: #444;
+            cursor: pointer;
+            .section-right{
+              display: flex;
+              align-items: center;
+              color: #777;
+              cursor: pointer;
+              .state{
+                color: #3c763d;
+                margin-right: 10px;
+                &.pay{
+                  color: #a94442;
+                }
+              }
+              .play-icon{
+                width: 12px;
+                height: 12px;
+                margin-right: 6px;
+              }
+            }
+          }
+        }
+      }
+      .tab-three{
+        display: none;
+        .widget-comments{
+          margin-top: 20px;
+          font-size: 13px;
+          color: #444;
+          padding: 10px;
+          border: 1px solid #ddd;
+          border-radius: 2px;
+          resize: none;
+          min-height: 32px;
+          .widget-comment-list{
+            display: flex;
+            border-bottom: 1px solid #eee;
+            font-size: 13px;
+            margin-top: 10px;
+            .user-avatar{
+              width: 24px;
+              height: 24px;
+              border-radius: 50%;
+              margin-right: 10px;
+            }
+            .media-body{
+              .media-heading{
+                color: #0767c8;
+              }
+              .content{
+                color: #999;
+              }
+              .media-footer{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 10px;
+                .time{
+                  color: #777;
+                }
+                .zan{
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  height: 22px;
+                  padding: 0 5px;
+                  border: 1px solid #ccc;
+                  img{
+                    width: 10px;
+                    height: 10px;
+                    margin-right: 6px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } 
+    .content-right{
+      width: 25%;
+      padding: 0 15px;
+      .widget-user{
+        padding: 15px;
+        background-color: #fff;
+        margin-bottom: 20px;
+      }
+      .video-user{
+        display: flex;
+        align-items: center;
+        img{
+          width: 64px;
+          height: 64px;
+          border-radius: 50%;
+          margin-right: 10px;
+        }
+        .user-right{
+          color: #777;
+          .user-name{
+            color: #0767c8;
+          }
+        }
+      }
+      .user-des{
+        padding: 10px 0;
+        border-top: 1px solid #eee;
+        margin-top: 10px;
+      }
+      .panel-default{
+        .panel-header{
+          color: #333;
+          // background-color: #f5f5f5;
+          background-color: #ffffff;
+          border-color: #ddd;
+          padding: 10px 15px;
+          border-bottom: 1px solid transparent;
+          border-top-left-radius: 3px;
+          border-top-right-radius: 3px;
+        }
+        .panel-body{
+          background-color: #ffffff;
+          .program-recommend{
+            padding: 10px 15px;
+            cursor: pointer;
+            .program-recommend-title{
+              color: #18C99D;
+            }
+            .program-recommend-joiner{
+
+            }
+          }
+        }
+      }
+    }
+  }
+}

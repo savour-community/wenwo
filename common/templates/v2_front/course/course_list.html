@@ -1,0 +1,140 @@
+{% extends 'v2_front/layout/main.html' %}
+{% load staticfiles ww_tags%}
+{% block head %}
+    <link rel="stylesheet" href="{% static '/css/v2/library.css' %}">
+    <link rel="stylesheet" href="{% static '/css/v2/blog.css' %}">
+{% endblock %}
+{% block body %}
+  <div class="library-container">
+    {% include 'v2_front/layout/header.html' %}
+    <div class="main-container library-box">
+      <div class="library-left">
+        <div class="type-items">
+          <div class="type-list">
+            {% if cat_id == 0 %}
+                <a href="{% url 'course_list' %}?cat_id=0">
+                    <div class="type-item active">全部</div>
+                </a>
+            {% else %}
+                <a href="{% url 'course_list' %}?cat_id=0">
+                    <div class="type-item">全部</div>
+                </a>
+            {% endif %}
+            {% for course_cat in course_cat_list %}
+                {% if course_cat.id == cat_id %}
+                  <a href="{% url 'course_list' %}?cat_id={{ course_cat.id }}">
+                      <div class="type-item active">{{ course_cat.name }}</div>
+                  </a>
+                {% else %}
+                   <a href="{% url 'course_list' %}?cat_id={{ course_cat.id }}">
+                      <div class="type-item">{{ course_cat.name }}</div>
+                   </a>
+                {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="library-right">
+        <div class="right-box">
+          <div style="background: #FFFFFF; border-radius: 10px; width: 72%">
+            <div class="filter-container">
+              <div class="filter-left">
+                <div>全部</div>
+                <div>共 <span>{{ total_course }}</span> 课程</div>
+              </div>
+              <div class="filter-right">
+                <div class="active">最新</div>
+                <div>阅读人数</div>
+              </div>
+            </div>
+            <div class="library-box-left">
+              <div class="library-list">
+                  {% for course in course_list %}
+                    <a href="{% url 'course_detail' course.id %}" class="library-item">
+                      <div class="item-left" style="width:82%">
+                        <img src="{% url 'index' %}media/{{ course.logo }}" alt="">
+                        <div class="item-detail">
+                          <div>
+                            <div class="title"> {{ course.title }} ｜ {{ course.category.name }}</div>
+                            <div class="des">{{ course.excerpt }}</div>
+                          </div>
+                          <div style="margin-top:10px" class="view">已有 {{ course.views }} 人看过</div>
+                        </div>
+                      </div>
+                      <div class="btn flex-center">查看</div>
+                    </a>
+                  {% endfor %}
+              </div>
+              <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                 {% include 'v2_front/public/pagination.html' with items=course_list %}
+              </nav>
+            </div>
+          </div>
+          <div class="stick-section">
+              <div class="section-title">
+                <img src="{% static 'images/gonggao.svg' %}" alt="">
+                <a href="http://www.wenwoha.com/blog_detail-612.html">问我社区专栏课程分成公告</a>
+              </div>
+              <div class="section">
+                <div class="slogan">
+                  <div class="title">问我社区</div>
+                  <div class="desc">人工智能，区块链，大数据，软硬件开发，运维测试，技术学习与咨询，就来问我</div>
+                </div>
+                <div class="wechat-qr" style="height:150px">
+                  <div class="qr-img">
+                      <img height="95px" width="95px" src="{% static 'picture/weixinqr.jpg' %}">
+                      <div>关注公众号 获取最新动态</div>
+                  </div>
+                </div>
+              </div>
+              <div class="section-help">
+                <div class="items author">
+                  <img src="{% static 'images/author_wr.svg' %}" alt="">
+                   {% if request.session.is_login %}
+                      <a href="{% url 'write_blog' %}" class="title">发布文章</a>
+                  {% else %}
+                      <a href="{% url 'register' %}" class="title">成为作者</a>
+                  {% endif %}
+                </div>
+                <div class="items author">
+                  <img src="{% static 'images/feadback.svg' %}" alt="">
+                  <a href="{% url 'create_sgt' %}" class="title">建议反馈</a>
+                </div>
+              </div>
+              <div class="section" style="margin-top:15px; background-color:#fff;">
+                 <div class="slogan">
+                    <div class="title">
+                        社交账号
+                    </div>
+                 </div>
+                 <ol class="athor-order">
+                    <li class="text-muted" style="margin-top:10px;">
+                        <span class="text-muted" style="float:left; padding-top:4px">联系电话: </span>
+                        <span class="text-muted" style="float:left; margin-left:10px; padding-top:4px">17720087838</span>
+                    </li>
+                    <br/>
+                     <li class="text-muted" style="margin-top:10px;">
+                        <span class="text-muted" style="float:left; padding-top:4px">邮箱: </span>
+                        <span class="text-muted" style="float:left; margin-left:10px; padding-top:4px">wenwoha2022@163.com</span>
+                    </li>
+                    <br/>
+                    <li class="text-muted" style="margin-top:10px;">
+                         <span class="text-muted" style="float:left; padding-top:4px">github: </span>
+                         <a href="https://github.com/guoshijiang" class="ellipsis" style="margin-left:10px;">
+                             <img class="avatar-32" src="{% static 'svg/github.svg' %}" alt="github账号 1">
+                         </a>
+                         <a href="https://github.com/gingernet" class="ellipsis">
+                             <img class="avatar-32" src="{% static 'svg/github.svg' %}" alt="github账号 2">
+                         </a>
+                         <a href="https://github.com/wenwoha" class="ellipsis">
+                             <img class="avatar-32" src="{% static 'svg/github.svg' %}" alt="github账号 3">
+                         </a>
+                   </li>
+                 </ol>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

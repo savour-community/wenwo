@@ -1,0 +1,68 @@
+{% extends 'v2_front/layout/main.html' %}
+{% load staticfiles ww_tags%}
+{% block head %}
+    <link rel="stylesheet" href="{% static '/css/v2/rank.css' %}">
+{% endblock %}
+{% block body %}
+ <div class="home-container">
+    {% include 'v2_front/layout/header.html' %}
+    <div class="rank-container">
+        <h6 class="rank-title">社区活跃用户</h6>
+        <ul class="rank-list widget-streams users">
+            {% for user_order in user_order_list %}
+                <li class="rank-item">
+                    <section class="hover-show streams-item">
+                        <div class="stream-wrap media">
+                            <div class="col-xs-12 col-md-9 rank-item-box">
+                                <div class="top-num pull-left mr-10">
+                                    <label class="label label-warning">{{ user_order.rank }}</label>
+                                </div>
+                                <div class="pull-left mr-10">
+                                    <a href="{% url 'author_main' user_order.id %}">
+                                         {% if user_order.user_pho %}
+                                            <img class="media-object avatar-64" src="{% url 'index' %}media/{{ user_order.user_pho }}" alt="{{ user_order.user_name }}">
+                                        {% else %}
+                                            <img class="media-object avatar-64" src="{% static 'images/avatar.png' %}" alt="{{ user_order.user_name }}">
+                                        {% endif %}
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">
+                                        <a href="{% url 'author_main' user_order.id %}">{{ user_order.user_name }}</a>
+                                        {% if user_order.is_sign == "Yes" %}
+                                            <span class="text-gold" style="font-size:12px;">
+                                                签约作者
+                                            </span>
+                                        {% endif %}
+                                    </h4>
+                                    {% if user_order.user_pos %}
+                                        <p class="text-muted">{{ user_order.user_pos }}</p>
+                                    {% else %}
+                                         <p class="text-muted">高级开发工程师</p>
+                                    {% endif %}
+                                    <p class="text-muted">{{ user_order.blog_num }}博客 / {{ user_order.course_num }}教程 / {{ user_order.video_num }}视频 / {{ user_order.topic_num }}问答 </p>
+                                </div>
+                            </div>
+                            <div class="hidden-xs col-md-3 btn-box">
+                                <ul class="action-list list-unstyled mt-20">
+                                    <li>
+                                        {% if user_order.is_focus %}
+                                            <a class="btn btn-info btn-sm">已关注</a>
+                                        {% else %}
+                                            <a href="{% url 'focus_other_web' user_order.id %}" class="btn btn-warning btn-sm">关注</a>
+                                        {% endif %}
+                                        <a href="{% url 'author_main' user_order.id %}" class="btn btn-warning btn-sm">查看主页</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+            {% endfor %}
+        </ul>
+        <nav aria-label="Page navigation example" class="d-flex justify-content-center" style="margin-top:15px">
+           {% include 'v2_front/public/pagination.html' with items=user_order_list %}
+        </nav>
+    </div>
+ </div>
+{% endblock %}

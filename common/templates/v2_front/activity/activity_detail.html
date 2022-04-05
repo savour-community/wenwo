@@ -1,0 +1,34 @@
+{% extends 'v2_front/layout/main.html' %}
+{% load staticfiles ww_tags%}
+{% block head %}
+    <link rel="stylesheet" href="{% static '/css/v2/libraryDetail.css' %}">
+{% endblock %}
+{% block body %}
+ <div class="library-detail-container">
+    {% include 'v2_front/layout/header.html' %}
+    <div class="main-container">
+        <div class="library-left">
+            <h1 class="title">{{ activity_show.title }}</h1>
+            <div class="article-meta">
+                <span>浏览：{{ activity_show.views }}</span>
+                <span>{{ activity_show.created_at | hdatetime }}</span>
+            </div>
+            <div class="article-content post-description markdown-body">
+               {{ activity_show.body | safe }}
+            </div>
+        </div>
+        <div class="library-right">
+            <div class="widget-item">
+                <div class="title">推荐活动</div>
+                <div class="hot-list">
+                    {% for hot in hot_activity  %}
+                        <a href="{% url 'index' %}activity_detail-{{ hot.id }}.html">
+                            <div class="hot-item">{{ hot.title  }}</div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

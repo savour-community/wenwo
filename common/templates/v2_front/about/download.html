@@ -1,0 +1,46 @@
+{% extends 'v2_front/layout/main.html' %}
+{% load staticfiles ww_tags%}
+{% block head %}
+    <link rel="stylesheet" href="{% static '/css/v2/download.css' %}">
+    <style>
+        .footer {
+           margin-top: 0;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+  <div class="home-container">
+    {% include 'v2_front/layout/header.html' %}
+     <div class="download-content-container">
+      <div class="left-download-container">
+        <h6><span>问我</span>社区</h6>
+        <p class="desc">专注互联网信息技术研究，分享，学习，培训。</p>
+        <div class="left-bottom-container">
+          <div class="download-href">
+            <a href="#">
+              <img src="{% static 'images/iphone.png' %}" alt="iphone">
+              iphone版下载
+            </a>
+            <a href="#">
+              <img src="{% static 'images/android.png'%}" alt="android">
+              android版下载
+            </a>
+          </div>
+          <div class="download-qrcode">
+            <div class="qrcode-item">
+              <img src="{% static 'picture/weixinqr.jpg'%}" alt="qrcode">
+              <p>APP下载二维码</p>
+            </div>
+            <div class="qrcode-item">
+              <img src="{% static 'picture/weixinqr.jpg'%}" alt="qrcode">
+              <p>小程序二维码</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right-download-container">
+        <img src="{% static 'images/-e-phone.png'%}" alt="-e-phone">
+      </div>
+    </div>
+ </div>
+{% endblock %}

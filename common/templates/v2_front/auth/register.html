@@ -1,0 +1,79 @@
+{% extends 'v2_front/layout/main.html' %}
+{% load staticfiles ww_tags%}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/v2/login.css' %}">
+{% endblock %}
+{% block body %}
+  <div class="body-container flex-center">
+    <div class="login-box">
+      <a href="{% url 'index' %}"><img src="{% static 'images/wenwo.png' %}" alt="logo"></a>
+      <div class="login-info-box flex-column alcenter">
+        <p class="title">注册</p>
+        <p class="sub-title">欢迎来到问我社区</p>
+        <form action="{% url 'register' %}" class="el-form" method="post">
+          <div class="el-input">
+            <div class="el-label-box">
+              <img class="el-icon" src="{% static 'images/yonghu-2.png' %}" alt="yonghu" />
+            </div>
+            {{ register_form.phone }}
+            {% if register_form.phone.errors %}
+                <div style="color:red; margin-left:8px; margin-top:5px">
+                   {{ register_form.phone.errors }}
+                </div>
+            {% endif %}
+          </div>
+          <div class="el-input">
+            <div class="el-label-box">
+              <img class="el-icon" src="{% static 'images/mima.png' %}" alt="yonghu" />
+            </div>
+            {{ register_form.password }}
+            {% if register_form.password.errors %}
+                <div style="color:red; margin-left:8px; margin-top:5px">
+                   {{ register_form.password.errors }}
+                </div>
+            {% endif %}
+          </div>
+          <div class="el-input">
+            <div class="el-label-box">
+              <img class="el-icon" src="{% static 'images/mima.png' %}" alt="yonghu" />
+            </div>
+            {{ register_form.c_password }}
+            {% if register_form.c_password.errors %}
+                <div style="color:red; margin-left:8px; margin-top:5px">
+                   {{ register_form.c_password.errors }}
+                </div>
+            {% endif %}
+          </div>
+          <div class="el-input">
+            <div class="el-label-box">
+              <img class="el-icon" src="{% static 'images/mima.png' %}" alt="yonghu" />
+            </div>
+            {{ register_form.v_code }}
+            {% if register_form.v_code.errors %}
+                <div style="color:red; margin-left:8px; margin-top:5px">
+                   {{ register_form.v_code.errors }}
+                </div>
+            {% endif %}
+            <div class="el-input-right">
+              <div onclick="GetCodeRister(this)" class="el-button mini" id="sendCodeBtn">发送</div>
+              <p id="countTime" class="count-time" style="display: none;">60s 后重新发送</p>
+            </div>
+          </div>
+          <div class="el-input">
+            <div class="el-label-box">
+              <img class="el-icon" src="{% static 'images/mima.png' %}" alt="yonghu" />
+            </div>
+            {{ register_form.invite_code }}
+            {% if register_form.invite_code.errors %}
+                <div style="color:red; margin-left:8px; margin-top:5px">
+                   {{ register_form.invite_code.errors }}
+                </div>
+            {% endif %}
+          </div>
+          <button type="submit" class="el-button block">注册</button>
+        </form>
+        <p class="register-box">已有账号？<a href="{% url 'login' %}">登录</a></p>
+      </div>
+    </div>
+  </div>
+{% endblock %}

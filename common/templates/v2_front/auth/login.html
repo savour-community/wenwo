@@ -1,0 +1,76 @@
+{% extends 'v2_front/layout/main.html' %}
+{% load staticfiles ww_tags%}
+{% block head %}
+    <link rel="stylesheet" href="{% static '/css/v2/login.css' %}">
+{% endblock %}
+{% block body %}
+  <div class="body-container flex-center">
+    <div class="login-box">
+      <a href="{% url 'index' %}"><img src="{% static 'images/wenwo.png' %}" alt="logo"></a>
+      <div class="login-info-box flex-column alcenter">
+        <p class="title">登录</p>
+        <p class="sub-title">欢迎来到问我社区</p>
+        <form action="{% url 'login' %}?login_way={{ login_way }}" class="el-form" method="post">
+          <div class="el-input">
+            <div class="el-label-box">
+              <img class="el-icon" src="{% static 'images/yonghu-2.png' %}" alt="yonghu" />
+            </div>
+            {{ login_form.phone }}
+            {% if login_form.phone.errors %}
+                <div style="color:red; margin-left:8px; margin-top:5px">
+                   {{ login_form.phone.errors }}
+                </div>
+            {% endif %}
+          </div>
+          {% if login_way == "password" %}
+              <div class="el-input">
+                <div class="el-label-box">
+                  <img class="el-icon" src="{% static 'images/mima.png' %}" alt="yonghu" />
+                </div>
+                {{ login_form.password }}
+                {% if login_form.password.errors %}
+                    <div style="color:red; margin-left:8px; margin-top:5px">
+                       {{ login_form.password.errors }}
+                    </div>
+                {% endif %}
+              </div>
+          {% endif %}
+          {% if login_way == "verify" %}
+              <div class="el-input">
+                <div class="el-label-box">
+                  <img class="el-icon" src="{% static 'images/mima.png' %}" alt="yonghu" />
+                </div>
+                {{ login_form.v_code }}
+                {% if login_form.v_code.errors %}
+                    <div style="color:red; margin-left:8px; margin-top:5px">
+                       {{ login_form.v_code.errors }}
+                    </div>
+                {% endif %}
+                <div class="el-input-right">
+                  <div onclick="GetCodeRister(this)" class="el-button mini" id="sendCodeBtn">发送</div>
+                  <p id="countTime" class="count-time" style="display: none;">60s后重新发送</p>
+                </div>
+              </div>
+          {% endif %}
+          <div class="btn-box flex-between">
+            {% if login_way == "password" %}
+                <a href="{% url 'login' %}?login_way=verify">验证码登录</a>
+            {% endif %}
+             {% if login_way == "verify" %}
+                <a href="{% url 'login' %}?login_way=password">密码登陆</a>
+            {% endif %}
+            <a href="{% url 'forget' %}">忘记密码</a>
+          </div>
+          <button type="submit" class="el-button block">登录</button>
+        </form>
+        <p class="register-box">你还没有账号？<a href="{% url 'register' %}">注册</a></p>
+      </div>
+    </div>
+  </div>
+  <div id="alertSuccess" class="alert alert-success" role="alert" style="position: fixed;top: 10vh;width: 200px;left: 50%;margin-left: -100px;text-align: center;display: none;">
+    验证码发送成功
+  </div>
+  <div id="alertError" class="alert alert-danger" role="alert" style="position: fixed;top: 10vh;width: 400px;left: 50%;margin-left: -200px;text-align: center;display: none">
+    获取验证码失败，请检查手机号之后重新获取
+  </div>
+{% endblock %}

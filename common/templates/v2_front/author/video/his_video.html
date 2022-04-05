@@ -1,0 +1,48 @@
+{% extends 'v2_front/layout/main.html' %}
+{% load staticfiles ww_tags%}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/v2/article.css' %}">
+    <link rel="stylesheet" href="{% static 'css/v2/AdminLTE.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/v2/my_new.css' %}">
+    <style>
+        #id_category {
+            font-size: 12px;
+            background-color: #F3F3F4;
+            border-radius: 10px;
+            border: 0;
+            height: 30px;
+            width: 200px;
+        }
+        #id_excerpt {
+            border: 0;
+            border-radius: 8px;
+        }
+        a {
+            color: #666;
+            text-decoration: none;
+            outline: 0;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+<div class="article-container">
+    {% include 'v2_front/layout/header.html' %}
+    <div class="activity-content main-container">
+        {% include 'v2_front/author/tab/tab_select.html' %}
+        <div class="content-right col-xs-12 col-sm-12 col-md-9 col-lg-9">
+           <div class="base-detail">
+              <div class="title">
+                <p style="font-size: 20px;">TA 的视频</p>
+              </div>
+              <div class="information-bd-box">
+                 <div class="information-bd-box">
+                    <div class="information-body-item">
+                       <p style="margin: 350px">暂不开启</p>
+                    </div>
+                 </div>
+              </div>
+           </div>
+      </div>
+   </div>
+</div>
+{% endblock %}

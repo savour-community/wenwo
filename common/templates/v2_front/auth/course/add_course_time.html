@@ -1,0 +1,108 @@
+{% extends 'v2_front/layout/main.html' %}
+{% load staticfiles ww_tags%}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/v2/article.css' %}">
+    <link rel="stylesheet" href="{% static 'css/v2/AdminLTE.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/v2/my_new.css' %}">
+    <style>
+         #id_part {
+            width:200px; border-radius:15px
+        }
+        #id_title {
+            width:300px; border-radius:15px; margin-left:20px
+        }
+        a {
+            color: #666;
+            text-decoration: none;
+            outline: 0;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+<div class="article-container">
+    {% include 'v2_front/layout/header.html' %}
+    <div class="activity-content main-container">
+       {% include 'v2_front/auth/tab/tab_select.html' %}
+       <div class="container content-container row">
+          <div class="content col-xs-12 col-sm-12 col-md-12 col-lg-12" style="background-color: white">
+            <div class="base-detail">
+              <div class="information-bd-box">
+                  <div class="col-md-12 main">
+                    <ul class="header-title-box">
+                        <li>
+                            <div class="row">
+                                <div class="col-xs-4 col-md-2">
+                                    <strong>课程序号</strong>
+                                </div>
+                                 <div class="col-xs-8 col-md-8 space-stream-item-title-warp">
+                                    <strong>课程标题</strong>
+                                </div>
+                                <div class="hidden-xs col-md-2">
+                                    <strong>操作状态</strong>
+                                </div>
+                            </div>
+                        </li>
+                        {% for c_article in c_article_list %}
+                            <li>
+                                <div class="row">
+                                    <div class="col-xs-2 col-md-2"><span>{{ c_article.part }}</span></div>
+                                     <div class="col-xs-7 col-md-7">
+                                        <a class="question-title" href="">{{ c_article.title }}</a>
+                                    </div>
+                                    <div class="col-xs-3 col-md-3">
+                                        {% if c_article.detail %}
+                                            <a class="btn btn-dark">
+                                                <i class="fa" style="color: white">{{ c_article.status | check_status }}</i>
+                                            </a>
+                                        {% else %}
+                                             <a href="{% url 'wirte_course_article' c_article.id %}" class="btn btn-danger">
+                                                <i class="fa">写文章</i>
+                                            </a>
+                                        {% endif %}
+                                        {% if c_article.status == 'CheckFail' %}
+                                             <a href="{% url 'wirte_course_article' c_article.id %}" class="btn btn-danger">
+                                                 <i class="fa">修改</i>
+                                             </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                  <div class="main">
+                     <ul class="header-title-box">
+                        <li style="margin-top:30px">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                    <form class="form-inline" method="post" style="padding-top:0;" action="{% url 'create_course_article' course_id %}">
+                                       {{ course_article_form.part }}
+                                       {% if course_article_form.part.errors %}
+                                            <div style="color:red; margin-left:8px; margin-top:5px">
+                                                {{ course_article_form.part.errors }}
+                                            </div>
+                                       {% endif %}
+                                        {{ course_article_form.title }}
+                                       {% if course_article_form.title.errors %}
+                                            <div style="color:red; margin-left:8px; margin-top:5px">
+                                                {{ course_article_form.title.errors }}
+                                            </div>
+                                       {% endif %}
+                                        <div class="form-group" style="margin-left:20px">
+                                            <button class="btn btn-danger" type="submit">
+                                                提交
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                     </ul>
+                 </div>
+              </div>
+            </div>
+          </div>
+       </div>
+   </div>
+</div>
+{% endblock %}

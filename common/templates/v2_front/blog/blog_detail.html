@@ -1,0 +1,109 @@
+{% extends 'v2_front/layout/main.html' %}
+{% load staticfiles ww_tags%}
+{% block head %}
+    <link rel="stylesheet" href="{% static '/css/v2/libraryDetail.css' %}">
+    <link rel="stylesheet" href="{% static 'css/v2/editormd.preview.css' %}">
+    <style>
+        #id_content {
+            text-decoration: none;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+<div class="library-detail-container">
+    {% include 'v2_front/layout/header.html' %}
+    <div class="main-container">
+        <div class="library-left">
+            <h1 class="title">{{ show.title }}</h1>
+            <div class="article-meta">
+                <span>分类： {{ show.category }}</span>
+                <span>作者：{{ show.user.user_name }}</span>
+                <span>浏览：{{ show.views }}</span>
+                <span>{{ show.created_at | hdatetime }}</span>
+            </div>
+            <div class="article-content post-description markdown-body">
+               {{ show.body | safe }}
+            </div>
+             <div class="box-title" style="margin-top: 50px">
+                 <a href="{% url 'blog_like' show.id %}">
+                    <div class="item dig-item" style="display:inline; margin-right:30px">
+                        <svg data-v-6213122e="" width="20" height="28" viewBox="0 0 16 16" fill="#86909c" xmlns="http://www.w3.org/2000/svg" class=""><path data-v-6213122e="" fill-rule="evenodd" clip-rule="evenodd" d="M8.89171 0.830428L9.01333 0.887423C9.82397 1.27824 11.0012 2.06718 11.0012 3.33376C11.0012 3.83594 10.7783 4.50196 10.3324 5.33182H12.8585C14.8478 5.33182 15.3046 7.08773 14.8478 8.40345L12.8585 13.6402C12.6904 14.2493 12.1306 14.6718 11.4918 14.6718H3.32843V5.33182H4.69308L7.65979 1.1115C7.84711 0.813472 8.35277 0.584994 8.89171 0.830428ZM2.33333 5.33268V14.666H1V5.33268H2.33333ZM8.55916 2.15072L5.3856 6.66528H4.66176V13.3386H11.4918C11.5331 13.3386 11.5653 13.3143 11.5732 13.2856L11.5899 13.2253L13.5938 7.94998C13.8572 7.17389 13.5945 6.66528 12.8585 6.66528H8.10231L9.15785 4.70085C9.50885 4.0476 9.66789 3.57253 9.66789 3.33389C9.66789 2.94703 9.2534 2.50946 8.55916 2.15072Z"></path></svg>
+                        {{ show.like }}
+                    </div>
+                 </a>
+                 {% if is_comment == "Yes" %}
+                    <a href="{% url 'index' %}blog_detail-{{ show.id }}.html?is_comment=No">
+                 {% else %}
+                    <a href="{% url 'index' %}blog_detail-{{ show.id }}.html?is_comment=Yes">
+                 {% endif %}
+                     <div class="item" style="display:inline; margin-left:30px">
+                        <svg data-v-6213122e="" width="20" height="28" viewBox="0 0 16 16" fill="#86909c" xmlns="http://www.w3.org/2000/svg" class=""><path data-v-6213122e="" fill-rule="evenodd" clip-rule="evenodd" d="M14 1C14.3682 1 14.6667 1.29848 14.6667 1.66667V12.3333C14.6667 12.7015 14.3682 13 14 13H10.5924L8.44602 14.932C8.19248 15.1601 7.8076 15.1601 7.55406 14.932L5.40737 13H2.00004C1.63185 13 1.33337 12.7015 1.33337 12.3333V1.66667C1.33337 1.29848 1.63185 1 2.00004 1H14ZM13.3334 2.33333H2.6667V11.6667H5.919L8 13.5395L10.0807 11.6667H13.3334V2.33333ZM11.3334 6.66667C11.3334 6.48257 11.1841 6.33333 11 6.33333H5.00003C4.81594 6.33333 4.6667 6.48257 4.6667 6.66667V7.33333C4.6667 7.51743 4.81594 7.66667 5.00003 7.66667H11C11.1841 7.66667 11.3334 7.51743 11.3334 7.33333V6.66667Z"></path></svg>
+                        {{ show.cmts }}
+                     </div>
+                 </a>
+             </div>
+            {% if is_comment == "Yes" %}
+                <form class="comment-container" method="post" action="{% url 'blog_detail' show.id %}">
+                    {% csrf_token %}
+                    {{ cmt_form.media }}
+                    {{ cmt_form.content }}
+                    {% if cmt_form.content.errors %}
+                        <div style="color:red; margin-left:8px; margin-top:5px">
+                           {{ cmt_form.content.errors }}
+                        </div>
+                    {% endif %}
+                    <button type="submit" class="btn btn-info submit-btn">提交</button>
+                </form>
+            {% endif %}
+             <div class="comment-list-wrapper">
+                <div class="title">全部评论（{{ blog_reply_num }}）</div>
+                <div class="comment-list">
+                    {% for blog_comment in blog_comment_list %}
+                        <div class="comment">
+                            <div class="popover-box user-popover">
+                                <img src="{% static 'images/avatar.png' %}" alt="">
+                            </div>
+                            <div class="content-box">
+                                <div class="comment-main">
+                                    <div class="user-box">
+                                        <span class="name"> {{ blog_comment.user.user_name }}</span>
+                                        <span class="divide"></span>
+                                        <span class="position">{{ blog_comment.user.id | userinfopos }}</span>
+                                        <span class="divide"></span>
+                                        <time class="time">
+                                            {{ blog_comment.created_at | hdatetime }}
+                                        </time>
+                                    </div>
+                                    <div class="content">{{ blog_comment.content }}</div>
+                                    <div class="action-box">
+                                        <div class="item dig-item">
+                                            <svg data-v-6213122e="" width="16" height="16" viewBox="0 0 16 16" fill="#86909c" xmlns="http://www.w3.org/2000/svg" class=""><path data-v-6213122e="" fill-rule="evenodd" clip-rule="evenodd" d="M8.89171 0.830428L9.01333 0.887423C9.82397 1.27824 11.0012 2.06718 11.0012 3.33376C11.0012 3.83594 10.7783 4.50196 10.3324 5.33182H12.8585C14.8478 5.33182 15.3046 7.08773 14.8478 8.40345L12.8585 13.6402C12.6904 14.2493 12.1306 14.6718 11.4918 14.6718H3.32843V5.33182H4.69308L7.65979 1.1115C7.84711 0.813472 8.35277 0.584994 8.89171 0.830428ZM2.33333 5.33268V14.666H1V5.33268H2.33333ZM8.55916 2.15072L5.3856 6.66528H4.66176V13.3386H11.4918C11.5331 13.3386 11.5653 13.3143 11.5732 13.2856L11.5899 13.2253L13.5938 7.94998C13.8572 7.17389 13.5945 6.66528 12.8585 6.66528H8.10231L9.15785 4.70085C9.50885 4.0476 9.66789 3.57253 9.66789 3.33389C9.66789 2.94703 9.2534 2.50946 8.55916 2.15072Z"></path></svg>
+                                            点赞
+                                        </div>
+                                        <div class="item">
+                                            <svg data-v-6213122e="" width="16" height="16" viewBox="0 0 16 16" fill="#86909c" xmlns="http://www.w3.org/2000/svg" class=""><path data-v-6213122e="" fill-rule="evenodd" clip-rule="evenodd" d="M14 1C14.3682 1 14.6667 1.29848 14.6667 1.66667V12.3333C14.6667 12.7015 14.3682 13 14 13H10.5924L8.44602 14.932C8.19248 15.1601 7.8076 15.1601 7.55406 14.932L5.40737 13H2.00004C1.63185 13 1.33337 12.7015 1.33337 12.3333V1.66667C1.33337 1.29848 1.63185 1 2.00004 1H14ZM13.3334 2.33333H2.6667V11.6667H5.919L8 13.5395L10.0807 11.6667H13.3334V2.33333ZM11.3334 6.66667C11.3334 6.48257 11.1841 6.33333 11 6.33333H5.00003C4.81594 6.33333 4.6667 6.48257 4.6667 6.66667V7.33333C4.6667 7.51743 4.81594 7.66667 5.00003 7.66667H11C11.1841 7.66667 11.3334 7.51743 11.3334 7.33333V6.66667Z"></path></svg>
+                                            回复
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="library-right">
+            <div class="widget-item">
+                <div class="title">推荐文章</div>
+                <div class="hot-list">
+                    {% for hot in hot_list  %}
+                        <a href="{% url 'index' %}blog_detail-{{ hot.id }}.html">
+                            <div class="hot-item">{{ hot.title  }}</div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

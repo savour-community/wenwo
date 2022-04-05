@@ -1,0 +1,188 @@
+.login-register{
+    margin-left:10px;
+    float: right;
+}
+
+#risk-param-form {
+    text-align: center;
+    margin-left: 10px;
+}
+
+.input-group-item {
+    margin-top: 12px;
+    width:100%;
+}
+
+.input-group-item input{
+    width:78%;
+    display: inline-block;
+}
+
+.input-group-item i{
+    width:12%;
+    display: inline-block;
+}
+
+.input-item {
+    width: 60%;
+}
+
+.modal-header{
+    border-bottom:0 solid #e5e5e5
+}
+
+.modal-box {
+    width: 25%;
+}
+
+.nav_menu{
+    height:45px;
+}
+
+.navbar-nav li a{
+    margin-top: 0;
+    padding-top:6px;
+}
+
+.user-left ul{
+    text-align: center;
+    width: 100%;
+}
+
+.user-left ul li {
+    width:100%;
+}
+
+.user-title{
+    margin-top: 24px;
+    font-size: 20px;
+    font-family: 微软雅黑;
+    font-weight:bold;
+}
+
+.user-photo .upd-pho {
+    margin-top:10px;
+}
+
+.user-pros ul{
+    margin-left:70px;
+    margin-top: 20px;
+}
+
+.user-pros ul li {
+    margin-top: 20px;
+    margin-bottom:20px;
+}
+
+.user-name {
+    margin-top: 5px;
+}
+
+.update-user-info {
+    float: right;
+    margin-bottom: 10px;
+    margin-right: 30px;
+}
+
+
+.write-act-form{
+    text-align:center;
+}
+
+.write-act-form input {
+    width:500px;
+    height:36px;
+}
+
+.write-act-form select {
+    margin-top:30px;
+    width:300px;
+    height:36px;
+}
+
+.act-input {
+    margin-top:60px;
+    width:200px;
+    height:36px;
+    margin-bottom:60px;
+}
+
+.act-excerpt input{
+    margin-top:60px;
+    width:500px;
+    height:90px;
+    margin-bottom:20px;
+}
+
+.act-tags input{
+    margin-top:60px;
+    width:200px;
+    height:36px;
+    margin-bottom:20px;
+}
+
+.act-category {
+    text-align:center;
+    margin-bottom: 10px;
+}
+
+.act-position {
+    margin-top: 30px;
+}
+
+.act-acttime{
+    margin-top: 30px;
+}
+
+.act-company {
+    margin-top: 30px;
+}
+
+.act-author{
+    margin-top: 30px;
+}
+
+.act-actfee{
+    margin-top: 30px;
+}
+
+.act-person{
+    margin-top: 30px;
+}
+
+.act-img {
+    margin-top: 30px;
+    display: inline-flex;
+}
+
+.act-img input{
+    margin-left: 20px;
+}
+
+
+.partner-title{
+    margin-top: 24px;
+    font-size: 20px;
+    font-family: 微软雅黑;
+    font-weight:bold;
+}
+
+.partner {
+    margin-left: 50px;
+}
+
+.partner ul {
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
+.partner ul li{
+   line-height: 25px;
+}
+
+
+.partner div {
+    margin-top: 20px;
+    font-size: 16px;
+    font-family: 微软雅黑;
+}

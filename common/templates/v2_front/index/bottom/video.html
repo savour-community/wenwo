@@ -1,0 +1,17 @@
+{% load staticfiles ww_tags%}
+<div class="video-list">
+  {% for video in video_list %}
+      <div class="video-item">
+        <img src="{% url 'index' %}media/{{ video.video_img }}" alt="" class="video-img">
+        <div class="video-name">{{ video.title }}</div>
+        <div class="video-num">{{ video.charpter_num }}节 · {{ video.views }}人已学</div>
+        <div class="video-user">
+          <img class="user-avatar" src="{% static 'images/avatar.png' %}" alt="">
+          <div>
+            <div>{{ video.user }}</div>
+            <div>{{ video.user.id | userinfopos }}</div>
+          </div>
+        </div>
+      </div>
+  {% endfor %}
+</div>

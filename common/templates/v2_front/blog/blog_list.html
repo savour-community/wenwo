@@ -1,0 +1,210 @@
+{% extends 'v2_front/layout/main.html' %}
+{% load staticfiles ww_tags%}
+{% block head %}
+    <link rel="stylesheet" href="{% static '/css/v2/blog.css' %}">
+{% endblock %}
+{% block body %}
+ <div class="blog-container">
+    {% include 'v2_front/layout/header.html' %}
+    <div class="main-container blog-box">
+      <div class="blog-left">
+        <div class="type-items">
+          <div class="type-list">
+              {% if cat_id == 0 %}
+                <a href="{% url 'index' %}?cat_id=0">
+                    <div class="type-item active">全部</div>
+                </a>
+              {% else %}
+                <a href="{% url 'index' %}?cat_id=0">
+                    <div class="type-item">全部</div>
+                </a>
+              {% endif %}
+              {% for cat_name in cat_name_lists %}
+                {% if cat_name.id == cat_id %}
+                  <a href="{% url 'index' %}?cat_id={{ cat_name.id }}">
+                      <div class="type-item active">{{ cat_name.name }}</div>
+                  </a>
+                {% else %}
+                   <a href="{% url 'index' %}?cat_id={{ cat_name.id }}">
+                      <div class="type-item">{{ cat_name.name }}</div>
+                   </a>
+                {% endif %}
+              {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="blog-right">
+        <div class="blog-wrap">
+            <div style=" margin:15px">
+              <img src="{% static 'images/index_banner.jpg' %}" alt="" class="blog-top-img">
+              <div class="blog-list record-list">
+               {% for blog in blog_list %}
+                  <a href="{% url 'index' %}blog_detail-{{ blog.id }}.html" class="blog-item">
+                    {% if blog.img %}
+                        <img class="blog-img" src="{% url 'index' %}media/{{ blog.img }}" alt="">
+                    {% endif %}
+                    <div class="item-right">
+                      <div class="aswer-title">{{ blog.title }}</div>
+                      <div class="answer-des">{{ blog.excerpt }}</div>
+                      <div class="anaswer-bottom">
+                        <div class="user-detail">
+                            {% if blog.user.user_pho %}
+                                <img class="user-avatar" src="{% url 'index' %}media/{{ blog.user.user_pho }}" alt="">
+                            {% else %}
+                                <img class="user-avatar" src="{% static 'images/avatar.png' %}" alt="">
+                            {% endif %}
+                          <div>{{ blog.user }}</div>
+                          <div class="time">{{ blog.created_at | hdatetime }}</div>
+                        </div>
+                        <div class="btns">
+                            <div class="btn-item">
+                                <img src="{% static 'images/eye.svg' %}" alt="">
+                                <div>{{ blog.views }}</div>
+                            </div>
+                            <div class="btn-item">
+                              <img src="{% static 'images/cmt.svg' %}" alt="">
+                              <div>{{ blog.cmts }}</div>
+                            </div>
+                            <div class="btn-item">
+                              <img src="{% static 'images/like.svg' %}" alt="">
+                              <div>{{ blog.like }}</div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                {% endfor %}
+              </div>
+              <div class="text-center loadmore">
+                <div id="More" class="btn btn-danger btn-md" style="background-color: #55BF90; border: 0">努力加载中...</div>
+              </div>
+            </div>
+        </div>
+        <div class="stick-section">
+          <div class="section-title">
+            <img src="{% static 'images/gonggao.svg' %}" alt="">
+            <a href="http://www.wenwoha.com/blog_detail-612.html">问我社区博客作者分成公告</a>
+          </div>
+          <div class="section">
+            <div class="slogan">
+              <div class="title">问我社区</div>
+              <div class="desc">人工智能，区块链，大数据，软硬件开发，运维测试，技术学习与咨询，就来问我</div>
+            </div>
+            <div class="wechat-qr">
+              <div class="qr-img" style="height: 125px">
+                  <img height="95px" width="95px" src="{% static 'picture/weixinqr.jpg' %}">
+                  <div>关注公众号 获取最新动态</div>
+              </div>
+            </div>
+          </div>
+          <div class="section-help">
+            <div class="items author">
+              <img src="{% static 'images/author_wr.svg' %}" alt="">
+              {% if request.session.is_login %}
+                  <a href="{% url 'write_blog' %}" class="title">发布文章</a>
+              {% else %}
+                  <a href="{% url 'register' %}" class="title">成为作者</a>
+              {% endif %}
+            </div>
+            <div class="items author">
+              <img src="{% static 'images/feadback.svg' %}" alt="">
+              <a href="{% url 'create_sgt' %}" class="title">建议反馈</a>
+            </div>
+          </div>
+          <div class="section" style="margin-top:15px; background-color:#fff;">
+             <div class="slogan">
+                <div class="title">
+                    社区活跃用户
+                    <a href="{% url 'author_order' %}" title="更多">»</a>
+                </div>
+             </div>
+             <ol class="athor-order">
+                {% for user_order in user_order_list %}
+                    <li class="text-muted" style="margin-top:10px;">
+                        {% if user_order.user_pho %}
+                            <img class="avatar-32" src="{% url 'index' %}media/{{ user_order.user_pho }}">
+                        {% else %}
+                            <img class="avatar-32" src="{% static 'images/avatar.png' %}">
+                        {% endif %}
+                        <a href="{% url 'author_main' user_order.id %}" class="ellipsis">{{ user_order.user_name }}</a>
+                        {% if user_order.user_pos %}
+                            <span class="text-muted" style="float:right; padding-top:4px; padding-right:10px">{{ user_order.user_pos }}</span>
+                        {% else %}
+                           <span class="text-muted" style="float:right; padding-top:4px; padding-right:10px">高级开发工程师</span>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+             </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+     $(document).ready(function(){
+        let page = 1
+        var Dom = jQuery('.record-list');
+        $(window).scroll(function () {
+            var scrollTop = $(this).scrollTop();
+            var boxHeight = $(document.getElementById("information-box")).height();
+            if (scrollTop >= boxHeight) {
+                let html = '';
+                let l_url=window.location.origin;
+                let req_url = l_url + "/article_list?cat_id=" + {{ cat_id }} + "&page=" + page + "&page_size=20";
+                console.log(req_url)
+                $.ajax({
+                    url: req_url,
+                    data: {},
+                    type: "GET",
+                    dataType: "json",
+                    success: function (result) {
+                        artcle_list = result.result.data
+                        if (artcle_list.length >= 1){
+                            for(var i= 0; i < artcle_list.length; i++) {
+                                 html += `
+                                    <a href="{% url 'index' %}blog_detail-${ artcle_list[i].id }.html" class="blog-item">
+                                    <div class="item-right">
+                                      <div class="aswer-title">${ artcle_list[i].title }</div>
+                                      <div class="answer-des"> ${ artcle_list[i].excerpt }</div>
+                                      <div class="anaswer-bottom">
+                                        <div class="user-detail">`
+                                          if(artcle_list[i].user_pho) {
+                                              html += `<img class="user-avatar" src="{% url 'index' %}media/${ artcle_list[i].user_pho }" alt="">`
+                                            } else {
+                                              html += `<img class="user-avatar" src="{% static 'images/avatar.png' %}" alt="">`
+                                            }
+                                        html += `
+                                          <div>${ artcle_list[i].user } </div>
+                                          <div class="time">${ artcle_list[i].created_at }</div>
+                                        </div>
+                                        <div class="btns">
+                                            <div class="btn-item">
+                                                <img src="{% static 'images/eye.svg' %}" alt="">
+                                                <div>${ artcle_list[i].views }</div>
+                                            </div>
+                                            <div class="btn-item">
+                                              <img src="{% static 'images/cmt.svg' %}" alt="">
+                                              <div>${ artcle_list[i].cmts }</div>
+                                            </div>
+                                            <div class="btn-item">
+                                              <img src="{% static 'images/like.svg' %}" alt="">
+                                              <div>${ artcle_list[i].like }</div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </a>
+                                `
+                            }
+                            Dom.append(html);
+                        } else {
+                            jQuery('#More').text("没有了，已经见低了");
+                        }
+                    }
+                })
+                page = page + 1
+           }
+       });
+    })
+</script>
+{% endblock %}

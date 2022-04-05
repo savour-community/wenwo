@@ -1,0 +1,105 @@
+{% extends 'v2_front/layout/main.html' %}
+{% load staticfiles ww_tags%}
+{% block head %}
+    <link rel="stylesheet" href="{% static '/css/v2/article.css' %}">
+    <style>
+        .el-tabs {
+          width: 100%;
+          min-height: 40px;
+          border-bottom: 1px solid #ddd;
+        }
+        .el-tabs .tabs-box {
+          display: flex;
+          width: auto;
+        }
+        .el-tabs .el-tab {
+          padding: 0 20px;
+          height: 40px;
+          box-sizing: border-box;
+          line-height: 40px;
+          display: inline-block;
+          list-style: none;
+          font-size: 14px;
+          font-weight: 500;
+          color: #303133;
+          text-decoration: none;
+          border: 1px solid #ddd;
+          border-bottom: none;
+          border-right: none;
+        }
+        .el-tabs .el-tab:last-child {
+          border-right: 1px solid #ddd;
+          border-radius: 0 6px 0 0;
+        }
+        .el-tabs .el-tab:first-child {
+          border-radius: 6px 0 0 0;
+        }
+        .el-tabs .el-tab:hover {
+          color: #409EFF;
+        }
+        .el-tabs .el-tab.active {
+          background-color: #ccc;
+        }
+        .el-tab-content {
+          width: 100%;
+          box-sizing: border-box;
+          padding: 20px;
+        }
+        .title-box {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          padding-bottom: 12px;
+          margin-top: 20px;
+          border-bottom: 1px solid #F0F0F0;
+        }
+        .left-title {
+          font-size: 18px;
+          font-family: PingFang SC;
+          font-weight: bold;
+          color: #333333;
+        }
+        .right-title {
+          font-size: 18px;
+          font-family: PingFang SC;
+          font-weight: 400;
+          color: #298B02;
+          padding-right: 30px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+<div class="article-container">
+    {% include 'v2_front/layout/header.html' %}
+    <div class="activity-content main-container">
+        {% include 'v2_front/auth/tab/tab_select.html' %}
+        <div class="content-right col-xs-12 col-sm-12 col-md-9 col-lg-9">
+            <div class="base-detail">
+              <div class="information-bd-box">
+                <div class="information-body-item">
+                   <div class="el-tabs" style="margin-top: 10px;">
+                       <div class="tabs-box">
+                            {% if top_active == "my_wallet" %}
+                                <a class="el-tab active" href="{% url 'my_wallet' %}">我的收益</a>
+                            {% else %}
+                                <a class="el-tab" href="{% url 'my_wallet' %}">我的收益</a>
+                            {% endif %}
+                             {% if top_active == "withdraw_wallet" %}
+                                <a class="el-tab active" href="{% url 'withdraw_wallet' %}">提现</a>
+                            {% else %}
+                                <a class="el-tab" href="{% url 'withdraw_wallet' %}">提现</a>
+                            {% endif %}
+                        </div>
+                   </div>
+                   <div class="module-box">
+                      <div class="module-box-body" style="text-align: center; margin-top: 100px">
+                          提现功能将于 2022 年 3 月 1 日开启, 届时平台积分将可以兑换成人民币提走，100 积分约等于 1 元钱
+                        </div>
+                    </div>
+                 </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

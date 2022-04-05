@@ -1,0 +1,72 @@
+.activity-container .activity-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 60px;
+}
+
+.activity-container .activity-list .activity-item {
+  width: calc(30%);
+  background: #FFFFFF;
+  -webkit-box-shadow: 0px 22px 34px -10px #E0E2E7;
+          box-shadow: 0px 22px 34px -10px #E0E2E7;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 30px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.activity-container .activity-list .activity-item .activity-img {
+  width: 100%;
+  height: 260px;
+}
+
+.activity-container .activity-list .activity-item .activity-name {
+  color: #000000;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 16px;
+}
+
+.activity-container .activity-list .activity-item .activity-bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.activity-container .activity-list .activity-item .activity-bottom .activity-time {
+  color: #999999;
+}
+
+.activity-container .activity-list .activity-item .activity-bottom .activity-view {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #999999;
+}
+
+.activity-container .activity-list .activity-item .activity-bottom .activity-view img {
+  width: 20px;
+  height: 15px;
+  margin-right: 10px;
+}
+/*# sourceMappingURL=activity.css.map */

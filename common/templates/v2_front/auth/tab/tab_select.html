@@ -1,0 +1,64 @@
+{% load staticfiles ww_tags%}
+<div class="article-left">
+    {% if tab_active == "person_info" %}
+        <a href="{% url 'person_info' %}" class="tab-item active">个人资料</a>
+    {% else %}
+        <a href="{% url 'person_info' %}" class="tab-item">个人资料</a>
+    {% endif %}
+    {% if tab_active == "my_focus_web" %}
+        <a href="{% url 'my_focus_web' %}" class="tab-item active">我的关注</a>
+    {% else %}
+        <a href="{% url 'my_focus_web' %}" class="tab-item">我的关注</a>
+    {% endif %}
+    {% if tab_active == "focus_me_web" %}
+        <a href="{% url 'focus_me_web' %}" class="tab-item active">关注我的</a>
+    {% else %}
+        <a href="{% url 'focus_me_web' %}" class="tab-item">关注我的</a>
+    {% endif %}
+    {% if tab_active == "my_blog" %}
+        <a href="{% url 'my_blog' %}" class="tab-item active">我的文章</a>
+    {% else %}
+        <a href="{% url 'my_blog' %}" class="tab-item">我的文章</a>
+    {% endif %}
+    {% if tab_active == "my_course" %}
+        <a href="{% url 'my_course' %}" class="tab-item active">我的专栏</a>
+    {% else %}
+        <a href="{% url 'my_course' %}" class="tab-item">我的专栏</a>
+    {% endif %}
+    {% if tab_active == "my_video" %}
+        <a href="{% url 'my_video' %}" class="tab-item active">我的视频教程</a>
+    {% else %}
+        <a href="{% url 'my_video' %}" class="tab-item">我的视频教程</a>
+    {% endif %}
+    {% if tab_active == "my_question" %}
+        <a href="{% url 'my_question' %}" class="tab-item active">我的提问</a>
+    {% else %}
+        <a href="{% url 'my_question' %}" class="tab-item">我的提问</a>
+    {% endif %}
+    {% if tab_active == "my_wallet" %}
+        <a href="{% url 'my_wallet' %}" class="tab-item active">我的收益</a>
+    {% else %}
+        <a href="{% url 'my_wallet' %}" class="tab-item">我的收益</a>
+    {% endif %}
+    {% if tab_active == "blog" %}
+       <a href="{% url 'write_blog' %}" class="tab-item active">写文章</a>
+    {% else %}
+       <a href="{% url 'write_blog' %}" class="tab-item">写文章</a>
+    {% endif %}
+    {% if tab_active == "question" %}
+        <a href="{% url 'create_question' %}" class="tab-item active">提问</a>
+    {% else %}
+        <a href="{% url 'create_question' %}" class="tab-item">提问</a>
+    {% endif %}
+     {% if tab_active == "my_suggestion" %}
+        <a href="{% url 'my_suggestion' %}" class="tab-item active">我的反馈</a>
+    {% else %}
+        <a href="{% url 'my_suggestion' %}" class="tab-item">我的反馈</a>
+    {% endif %}
+    {% if tab_active == "sgt" %}
+        <a href="{% url 'create_sgt' %}" class="tab-item active">反馈问题</a>
+    {% else %}
+        <a href="{% url 'create_sgt' %}" class="tab-item">反馈问题</a>
+    {% endif %}
+
+</div>

@@ -1,0 +1,54 @@
+{% extends 'v2_front/layout/main.html' %}
+{% load staticfiles ww_tags%}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/v2/article.css' %}">
+    <link rel="stylesheet" href="{% static 'css/v2/my_new.css' %}">
+    <style>
+        #id_category {
+            font-size: 12px;
+            background-color: #F3F3F4;
+            border-radius: 10px;
+            border: 0;
+            height: 30px;
+            width: 200px;
+        }
+        #id_excerpt {
+            border: 0;
+            border-radius: 8px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+<div class="article-container">
+    {% include 'v2_front/layout/header.html' %}
+    <div class="activity-content main-container">
+        {% include 'v2_front/auth/tab/tab_select.html' %}
+        <div class="content-right col-xs-12 col-sm-12 col-md-9 col-lg-9">
+            <div class="base-detail">
+              <div class="title">
+                <p>我的反馈</p>
+                <a href="{% url 'create_sgt' %}" class="btn" style="background-color:#18C99D; color: white">去反馈</a>
+              </div>
+              <div class="information-bd-box">
+                <div class="information-body-item">
+                  <ul>
+                     {% for sgt in sgt_list %}
+                        <li class="d-flex justify-content-between">
+                          <div class="information-right-content">
+                            <a><p>{{ sgt.title }}</p></a>
+                            <p class="desc" style="margin-top: 10px">反馈内容：{{ sgt.body | safe }}</p>
+                            <p class="desc" style="margin-top: 10px">反馈状态：{{ sgt.status | feedback_status }}</p>
+                          </div>
+                        </li>
+                   {% endfor %}
+                  </ul>
+                </div>
+                <nav aria-label="Page navigation example" class="d-flex justify-content-center" style="margin-top:20px">
+                  {% include 'v2_front/public/pagination.html' with items=sgt_list %}
+                </nav>
+              </div>
+            </div>
+      </div>
+   </div>
+</div>
+{% endblock %}

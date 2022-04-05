@@ -1,0 +1,175 @@
+{% extends 'backend/layout/filter_panel.html' %}
+{% load staticfiles ww_tags %}
+{% block bixin_head_title %}
+{% endblock %}
+{% block panelHeader %}
+{% endblock %}
+{% block filter %}
+<h2>用户详细信息</h2>
+<ul class="nav navbar-right panel_toolbox">
+  <li>
+      <a href="{% url 'back_user_list' %}">返回用户列表<i class="fa fa-chevron-right ml-1"></i></a>
+  </li>
+</ul>
+<div class="clearfix"></div>
+{% endblock %}
+{% block content %}
+<div class="form-horizontal form-label-left">
+
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12">户名称</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="form-control form-display col-md-7 col-xs-12 bixin-text-wrap">{{ b_user.user_name }}</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12">手机号码</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="form-control form-display col-md-7 col-xs-12 bixin-text-wrap">{{ b_user.phone }}</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12">用户真实名字</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="form-control form-display col-md-7 col-xs-12 bixin-text-wrap">
+          {{ b_user_info.user_real_name }}
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12">用户头像</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="form-control form-display col-md-7 col-xs-12 bixin-text-wrap">
+          {{ b_user_info.user_pho }}
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12">用户介绍</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="form-control form-display col-md-7 col-xs-12 bixin-text-wrap">
+          {{ b_user_info.user_intro }}
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12">性别</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="form-control form-display col-md-7 col-xs-12 bixin-text-wrap">
+          {{ b_user_info.user_sex }}
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12">用户年龄</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="form-control form-display col-md-7 col-xs-12 bixin-text-wrap">
+          {{ b_user_info.user_age }}
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12">职位</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="form-control form-display col-md-7 col-xs-12 bixin-text-wrap">
+          {{ b_user_info.user_pos }}
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12">学校</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="form-control form-display col-md-7 col-xs-12 bixin-text-wrap">
+          {{ b_user_info.college }}
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12">学历</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="form-control form-display col-md-7 col-xs-12 bixin-text-wrap">
+          {{ b_user_info.education }}
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12">所在单位</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="form-control form-display col-md-7 col-xs-12 bixin-text-wrap">
+          {{ b_user_info.company }}
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12">所属行业</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="form-control form-display col-md-7 col-xs-12 bixin-text-wrap">
+          {{ b_user_info.industry }}
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12">开始工作时间</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="form-control form-display col-md-7 col-xs-12 bixin-text-wrap">
+          {{ b_user_info.start_work }}
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12">身份证号码</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="form-control form-display col-md-7 col-xs-12 bixin-text-wrap">
+          {{ b_user_info.user_card }}
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12">邮箱</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="form-control form-display col-md-7 col-xs-12 bixin-text-wrap">
+          {{ b_user_info.user_email }}
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12">QQ</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="form-control form-display col-md-7 col-xs-12 bixin-text-wrap">
+          {{ b_user_info.user_qq }}
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12">微信</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="form-control form-display col-md-7 col-xs-12 bixin-text-wrap">
+          {{ b_user_info.user_wechat }}
+      </div>
+    </div>
+  </div>
+
+  <div class="ln_solid"></div>
+  <div class="form-group">
+    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3"></div>
+  </div>
+</div>
+{% endblock %}
+
+

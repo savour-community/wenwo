@@ -1,0 +1,23 @@
+{% load staticfiles ww_tags%}
+<div class="article-left">
+    {% if tab_active == "author_main" %}
+        <a href="{% url 'author_main' author_id  %}" class="tab-item active">TA的资料</a>
+    {% else %}
+        <a href="{% url 'author_main' author_id %}" class="tab-item">TA的资料</a>
+    {% endif %}
+    {% if tab_active == "his_blog" %}
+        <a href="{% url 'his_blog' author_id %}" class="tab-item active">TA的文章</a>
+    {% else %}
+        <a href="{% url 'his_blog' author_id %}" class="tab-item">TA的文章</a>
+    {% endif %}
+    {% if tab_active == "his_course" %}
+        <a href="{% url 'his_course' author_id %}" class="tab-item active">TA的专栏</a>
+    {% else %}
+        <a href="{% url 'his_course' author_id %}" class="tab-item">TA的专栏</a>
+    {% endif %}
+    {% if tab_active == "his_video" %}
+        <a href="{% url 'his_video' author_id %}" class="tab-item active">TA的视频</a>
+    {% else %}
+        <a href="{% url 'his_video' author_id %}" class="tab-item">TA的视频</a>
+    {% endif %}
+</div>

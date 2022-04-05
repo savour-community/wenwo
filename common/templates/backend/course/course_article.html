@@ -1,0 +1,68 @@
+{% extends 'backend/layout/filter_panel.html' %}
+{% load staticfiles  ww_tags%}
+{% block bixin_head_title %}
+{% endblock %}
+{% block panelHeader %}
+<h3>专拦课程文章章节列表</h3>
+
+{% endblock %}
+{% block content %}
+ <ul class="nav navbar-right panel_toolbox">
+  <li>
+      <a href="{% url 'back_course_list' %}">返回课程列表<i class="fa fa-chevron-right ml-1"></i></a>
+  </li>
+</ul>
+<div class="dataTables_wrapper form-inline no-footer">
+  <div class="row">
+    <div class="col-12">
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered dataTable no-footer" role="grid">
+          <thead>
+            <tr role="row">
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">章节</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">标题</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">是否免费</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">文章阅读量</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">文章评论量</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">是否是有效</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">文章状态</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">发布时间</th>
+              <th class="sorting" tabindex="0" rowspan="1" colSpan="1">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for b_article in b_article_list %}
+            <tr role="row">
+              <td>{{ b_article.part }}</td>
+              <td>{{ b_article.title }}</td>
+              <td>{{ b_article.is_free }}</td>
+              <td>{{ b_article.views }}</td>
+              <td>{{ b_article.comment_num }}</td>
+              <td>{{ b_article.is_active }}</td>
+              <td>{{ b_article.status }}</td>
+              <td>{{ b_article.created_at | hdatetime }}</td>
+              <td>
+                  {% if b_article.status == 'CheckPass'%}
+                      <a>已审核</a>
+                  {% elif b_article.status == 'CheckFail' %}
+                      <a>已打回</a>
+                  {% elif b_article.status == 'Checking' %}
+                      <a href="{% url 'bc_article_check' b_article.id %}?status=CheckPass">审核</a>
+                      <a href="{% url 'bc_article_check' b_article.id %}?status=CheckFail">拒绝</a>
+                  {% endif %}
+                  <a href="{% url 'bc_article_detail' b_article.id %}">查看详情</a>
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="pull-right">
+      {% include 'backend/select/pagination.html' with items=b_blog_list %}
+    </div>
+  </div>
+</div>
+{% endblock %}

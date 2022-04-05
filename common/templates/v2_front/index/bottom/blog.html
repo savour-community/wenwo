@@ -1,0 +1,30 @@
+{% load staticfiles ww_tags%}
+{% for blog in  blog_list  %}
+    <div class="blog-item">
+      <div class="item-right">
+        <div class="aswer-title">{{ blog.title }}</div>
+        <div class="answer-des">{{ blog.excerpt }}</div>
+        <div class="anaswer-bottom">
+          <div class="user-detail">
+            <img class="user-avatar" src="{% static 'images/avatar.png' %}" alt="">
+            <div>{{ blog.user }}</div>
+            <div class="time">{{ blog.created_at | hdatetime }}</div>
+          </div>
+          <div class="btns">
+            <div class="btn-item">
+              <img src="{% static 'images/eye.svg' %}" alt="">
+              <div>{{ blog.views }}</div>
+            </div>
+            <div class="btn-item">
+              <img src="{% static 'images/cmt.svg' %}" alt="">
+              <div>{{ blog.cmts }}</div>
+            </div>
+            <div class="btn-item">
+              <img src="{% static 'images/like.svg' %}" alt="">
+              <div>{{ blog.like }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endfor %}
