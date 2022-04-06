@@ -133,6 +133,7 @@ class UserRegisterForm(forms.Form):
         create_user = User.objects.create(
             user_name="小问",
             phone=self.clean_phone(),
+            token=bs.decode(),
             password=hash_code(self.clean_password()),
             invite_user_id=invite_user_id,
             invite_code=bs.decode()
