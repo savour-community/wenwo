@@ -91,6 +91,7 @@ def vcmt_list(request):
         video_reply_return.append(video_reply.to_dict())
     return ok_json(video_reply_return)
 
+
 @check_api_token
 @check_user_token
 def vedio_like(request):

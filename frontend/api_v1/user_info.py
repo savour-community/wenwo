@@ -58,6 +58,7 @@ def update_userif(request):
 
 
 @check_api_token
+@check_user_token
 def update_photo(request):
     user_id = int(request.POST.get("user_id"))
     user_photo = request.FILES.get("user_photo")

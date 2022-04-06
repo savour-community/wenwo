@@ -159,6 +159,7 @@ def login(request):
 
 
 @check_api_token
+@check_user_token
 def forget(request):
     params = json.loads(request.body.decode())
     phone = params.get('phone', "")

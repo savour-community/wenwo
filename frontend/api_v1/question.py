@@ -87,6 +87,7 @@ def question_detail(request):
 
 
 @check_api_token
+@check_user_token
 def question_reply(request):
     params = json.loads(request.body.decode())
     qs_id = int(params.get('qs_id', 0))
@@ -102,6 +103,7 @@ def question_reply(request):
 
 
 @check_api_token
+@check_user_token
 def create_reply(request):
     params = json.loads(request.body.decode())
     user_id = int(params.get('user_id', 0))
@@ -126,6 +128,7 @@ def create_reply(request):
 
 
 @check_api_token
+@check_user_token
 def qs_comment_like(request):
     params = json.loads(request.body.decode())
     cmt_id = int(params.get('cmt_id', 0))
