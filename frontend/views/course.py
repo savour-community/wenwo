@@ -60,7 +60,7 @@ def course_article(request, cid):
     user_id = request.session.get("user_id")
     is_comment = request.GET.get("is_comment", "No")
     course_detail = Course.objects.filter(id=cid).first()
-    course_chapter_list = CourseArtcle.objects.filter(course=course_detail, status='CheckPass').order_by("part, id")
+    course_chapter_list = CourseArtcle.objects.filter(course=course_detail, status='CheckPass').order_by("part", "id")
     cs_comment_list = CourseCommet.objects.filter(course=course_detail, artcle__id=act_id).order_by("-id")
     total_cmt = len(cs_comment_list)
     if act_id != 0:
