@@ -74,14 +74,15 @@ def bc_article_check(request, cid):
 @check_admin_login
 def bc_article_detail(request, cid):
     bc_article = CourseArtcle.objects.filter(course__id=cid).first()
-    bc_article.detail = markdown.markdown(
-        bc_article.detail,
-        extensions=[
-            'markdown.extensions.extra',
-            'markdown.extensions.codehilite',
-            'markdown.extensions.toc',
-        ]
-    )
+    if bc_article is not None:
+        bc_article.detail = markdown.markdown(
+            bc_article.detail,
+            extensions=[
+                'markdown.extensions.extra',
+                'markdown.extensions.codehilite',
+                'markdown.extensions.toc',
+            ]
+        )
     return render(request, 'backend/course/course_article_detail.html', locals())
 
 
