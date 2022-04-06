@@ -73,7 +73,7 @@ def bc_article_check(request, cid):
 
 @check_admin_login
 def bc_article_detail(request, cid):
-    bc_article = CourseArtcle.objects.filter(course__id=cid).first()
+    bc_article = CourseArtcle.objects.filter(id=cid).first()
     if bc_article is not None:
         bc_article.detail = markdown.markdown(
             bc_article.detail,
