@@ -7,8 +7,7 @@ from django.shortcuts import redirect
 from book.models import (
     Course,
     CourseCat,
-    CourseArtcle,
-    CourseCommet
+    CourseArtcle, CourseCommet
 )
 from common.helpers import paged_items
 from book.forms.cmt_forms import CourseCommetForm
@@ -234,4 +233,3 @@ def wirte_course_article(request, act_id):
                     'error': error
                 }
             )
-
