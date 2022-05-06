@@ -234,3 +234,4 @@ def wirte_course_article(request, act_id):
                     'error': error
                 }
             )
+
